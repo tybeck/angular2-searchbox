@@ -1,0 +1,37 @@
+div.ng-advanced-searchbox
+  template(
+    [ngIf]="ngSearchBoxFiltering"
+  )
+    div {{onChange}}
+    ng-advanced-searchbox-filtering(
+      [observer]="onChange"
+    )
+  template([ngIf]="Filtering")
+    div {{Filtering.hasFilters}}
+  div.ng-searchbox-wrapper
+    input(
+      [id]="sid",
+      type="text",
+      [(ngModel)]="query",
+      (ngModelChange)="queryChange($event);",
+      (keydown)="onKeyDown($event);",
+      [placeholder]="placeholder"
+    )
+    template(
+      [ngIf]="hasQuery"
+    )
+      i(
+        class="fa fa-eraser",
+        (click)="handleEraser();"
+      )
+    template(
+      [ngIf]="(hasQuery || (Filtering && Filtering.hasFilters))"
+    )
+      i(
+        class="fa fa-trash",
+        (click)="handleGarbage();"
+      )
+  ng-advanced-searchbox-added-filters-wrapper(
+    [observer]="onChange",
+    #ngAdvancedSearchboxAddedFilters=""
+  )

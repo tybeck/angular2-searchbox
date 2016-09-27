@@ -1,0 +1,22 @@
+div.ng-filtering.clearfix
+  span(
+    (click)="toggleFilters();",
+    [ngClass]="{ 'active': active }"
+  )
+    i.fa.fa-filter
+  ul(
+    [hidden]="!active"
+  )
+    li(
+      *ngFor="let filter of availableFilters",
+      [ngClass]="{ 'child-filter': filter.child, 'root-filter': filter.root }",
+      (click)="addFilter($event, filter.name);"
+    )
+      i.fa.fa-filter
+      span(
+        [innerText]="filter.displayName",
+        class="ng-filter-display-name"
+      )
+      span(
+        class="ng-filtered-from"
+      )

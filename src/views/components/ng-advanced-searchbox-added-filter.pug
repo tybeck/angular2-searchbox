@@ -1,0 +1,41 @@
+div.ng-advanced-searchbox-added-filter(
+  #ngAdvancedSearchboxAddedFilter=""
+)
+  div.ng-advanced-searchbox-added-filter-contents(
+    (click)="openFilter();"
+  )
+    span(
+      class="ng-advanced-searchbox-filter-name",
+      [innerText]="filter.displayName + ':'"
+    )
+    template(
+      [ngIf]="filter && filter.selector"
+    )
+      span(
+        class="selector-type",
+        [innerText]="filter.selector.name"
+      )
+    template(
+      [ngIf]="filter && filter.value"
+    )
+      span(
+        [innerText]="filter.value"
+        class="filter-value"
+      )
+  template(
+    [ngIf]="filter && filter.editing"
+  )
+    input(
+      type="text",
+      [(ngModel)]="v",
+      (ngModelChange)="valueChange($event);",
+      (keydown)="onKeyDown($event);",
+      (keyup)="onKeyUp($event);"
+    )
+  ng-advanced-searchbox-filter-selectors(
+    [filter]="filter"
+  )
+  i(
+    class="fa fa-times",
+    (click)="destroy();"
+  )

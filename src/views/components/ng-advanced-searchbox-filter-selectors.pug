@@ -1,0 +1,23 @@
+div(
+  class="ng-advanced-searchbox-filter-selectors",
+  [hidden]="!filter.editing"
+)
+  ul(
+    class="ng-advanced-searchbox-selectors-list"
+  )
+    li(
+      *ngFor="let selector of selectors",
+      [ngClass]="{ 'active': selector.selected }",
+      (click)="takeSelector(selector);"
+    )
+      span([innerText]="selector.name")
+
+
+
+
+
+
+
+
+
+
