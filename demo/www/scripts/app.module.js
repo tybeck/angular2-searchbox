@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var platform_browser_1 = require('@angular/platform-browser');
-var tyb_advanced_searchbox_1 = require('tyb-advanced-searchbox');
+var angular2_searchbox_1 = require('angular2-searchbox');
 var app_component_1 = require('./components/app.component');
 var AppModule = (function () {
     function AppModule() {
@@ -21,7 +21,7 @@ var AppModule = (function () {
             'imports': [
                 platform_browser_1.BrowserModule,
                 common_1.CommonModule,
-                tyb_advanced_searchbox_1.TybAdvancedSearchboxModule
+                angular2_searchbox_1.NgSearchboxModule
             ],
             'declarations': [
                 app_component_1.AppComponent

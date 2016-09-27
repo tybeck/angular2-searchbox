@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 
 import {
-  TybAdvancedSearchboxAddedFilter
-} from '../components/tyb-advanced-searchbox-added-filter';
+  NgAdvancedSearchboxAddedFilter
+} from '../components/ng-advanced-searchbox-added-filter';
 
 export namespace Search {
 
@@ -152,7 +152,7 @@ export namespace ModifiedSearch {
 
 export interface AddedFilter {
 
-  component: ComponentRef<TybAdvancedSearchboxAddedFilter>;
+  component: ComponentRef<NgAdvancedSearchboxAddedFilter>;
 
   filter: ModifiedSearch.ModifiedFilter;
 

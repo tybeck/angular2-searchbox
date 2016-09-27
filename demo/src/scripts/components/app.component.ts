@@ -7,7 +7,7 @@ import {
 import {
   API,
   Search
-} from 'tyb-advanced-searchbox';
+} from 'angular2-searchbox';
 
 
 @Component({

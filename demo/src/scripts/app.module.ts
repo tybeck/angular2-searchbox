@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {
-  TybAdvancedSearchboxModule
-} from 'tyb-advanced-searchbox';
+  NgSearchboxModule
+} from 'angular2-searchbox';
 
 import { AppComponent }  from './components/app.component';
 
@@ -15,7 +15,7 @@ import { AppComponent }  from './components/app.component';
   'imports': [
     BrowserModule,
     CommonModule,
-    TybAdvancedSearchboxModule
+    NgSearchboxModule
   ],
 
   'declarations': [

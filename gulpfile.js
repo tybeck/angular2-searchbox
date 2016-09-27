@@ -271,7 +271,7 @@ function buildPug (cb) {
 
     return cb(null);
 
-  }, 300);
+  }, 750);
 
 }
 

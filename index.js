@@ -12,5 +12,5 @@ function __export (m) {
 
 }
 
-__export(require('./dist/scripts/tyb-advanced-searchbox.module'));
+__export(require('./dist/scripts/ng-searchbox.module'));
 __export(require('./dist/scripts/services/api.service'));
