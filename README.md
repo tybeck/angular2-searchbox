@@ -1,16 +1,16 @@
 <img src="img/angular.png" alt="Angular" align="right" />
-![GitHub version](https://img.shields.io/github/tag/tybeck/tyb-advanced-searchbox.svg?maxAge=180000)
+![GitHub version](https://img.shields.io/github/tag/tybeck/angular2-searchbox.svg?maxAge=180000)
 &nbsp;&nbsp;&nbsp;
-![Commits Since](https://img.shields.io/github/commits-since/tybeck/tyb-advanced-searchbox/v1.0.10.svg?maxAge=180000)
+![Commits Since](https://img.shields.io/github/commits-since/tybeck/angular2-searchbox/v1.0.10.svg?maxAge=180000)
 &nbsp;&nbsp;&nbsp;
-![NPM Dependencies](https://david-dm.org/tybeck/tyb-advanced-searchbox.svg)
+![NPM Dependencies](https://david-dm.org/tybeck/angular2-searchbox.svg)
 &nbsp;&nbsp;&nbsp;
-![NPM Dev Dependencies](https://david-dm.org/tybeck/tyb-advanced-searchbox/dev-status.svg)
+![NPM Dev Dependencies](https://david-dm.org/tybeck/angular2-searchbox/dev-status.svg)
 &nbsp;&nbsp;&nbsp;
-![Total Downloads](https://img.shields.io/github/downloads/tyb-advanced-searchbox/tyb-advanced-searchbox/total.svg?maxAge=180000)
+![Total Downloads](https://img.shields.io/github/downloads/angular2-searchbox/angular2-searchbox/total.svg?maxAge=180000)
 &nbsp;&nbsp;&nbsp;
 
-## Tyb - Angular2 Advanced Searchbox - Alpha
+## Angular2 Searchbox - Alpha
 
 ### Currently in development!
 
