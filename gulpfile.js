@@ -415,8 +415,10 @@ gulp.task('commit', ['bump'], function (cb) {
 
       'args': 'tag -a v'.concat(
         pkg.version,
-        ' -m \"Ng - Release v\"',
-        pkg.version)
+        ' -m \"Ng - Release v',
+        pkg.version,
+        '\"'
+      )
 
     }, function () {
 

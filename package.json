@@ -1,6 +1,6 @@
 {
   "name": "angular2-searchbox",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "An implementation to add advanced searching capabilities into a reusable UI to help build parameters based off of filters, queries and operators to send off to a search API.",
   "main": "index.js",
   "scripts": {
