@@ -415,7 +415,7 @@ gulp.task('commit', ['bump'], function (cb) {
 
       'args': 'tag -a v'.concat(
         pkg.version,
-        ' \"-m Ng2 - Release v\"',
+        ' -m \"Ng - Release v\"',
         pkg.version)
 
     }, function () {
@@ -439,9 +439,9 @@ gulp.task('commit', ['bump'], function (cb) {
 
             exec('npm publish', function () {
 
-              console.log(chalk.white.bgBlue('Ng2 - Commit finished!'));
+              console.log(chalk.white.bgBlue('Ng - Commit finished!'));
 
-              console.log(chalk.white.bgBlue('Ng2 - Published to NPM!'));
+              console.log(chalk.white.bgBlue('Ng - Published to NPM!'));
 
               return cb(null);
 
