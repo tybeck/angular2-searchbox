@@ -28,4 +28,4 @@
 - Validation - Validators on filters allows control over when search get's updated based on valid entries.
 - Middlewares - to modify values within filters after user input.
 - Externalized Configuration / HTML (**In Progress**)
-- Grouping (**In Progress**)
+- Grouping (**In Progress**) 
