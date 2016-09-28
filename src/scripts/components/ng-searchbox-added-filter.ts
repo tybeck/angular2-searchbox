@@ -19,7 +19,7 @@ import {
 } from '../services/event-handling.service';
 
 import {
-  NgAdvancedSearchboxAddedFilterTemplate
+  NgSearchboxAddedFilterTemplate
 } from '../ng.templates';
 
 import {
@@ -28,9 +28,9 @@ import {
 
 @Component({
 
-  'selector': 'ng-advanced-searchbox-added-filter',
+  'selector': 'ng-searchbox-added-filter',
 
-  'template': NgAdvancedSearchboxAddedFilterTemplate,
+  'template': NgSearchboxAddedFilterTemplate,
 
   'providers': [
     UtilsService
@@ -38,9 +38,9 @@ import {
 
 })
 
-export class NgAdvancedSearchboxAddedFilter {
+export class NgSearchboxAddedFilter {
 
-  @ViewChild('ngAdvancedSearchboxAddedFilter') ngAdvancedSearchboxAddedFilter: ElementRef;
+  @ViewChild('ngSearchboxAddedFilter') ngSearchboxAddedFilter: ElementRef;
 
   public Filtering: FilteringService = null
 
@@ -73,7 +73,7 @@ export class NgAdvancedSearchboxAddedFilter {
     filteringSvc: FilteringService,
     eventSvc: EventHandling,
     filter: ModifiedSearch.ModifiedFilter
-  ): NgAdvancedSearchboxAddedFilter {
+  ): NgSearchboxAddedFilter {
 
     this.Filtering = filteringSvc;
 
@@ -90,7 +90,7 @@ export class NgAdvancedSearchboxAddedFilter {
 
   public toggleActivation (force?: boolean): void {
 
-    let self: NgAdvancedSearchboxAddedFilter = <NgAdvancedSearchboxAddedFilter>this;
+    let self: NgSearchboxAddedFilter = <NgSearchboxAddedFilter>this;
 
     if (typeof this
       .filter
@@ -157,7 +157,7 @@ export class NgAdvancedSearchboxAddedFilter {
 
   }
 
-  public openFilter (): NgAdvancedSearchboxAddedFilter {
+  public openFilter (): NgSearchboxAddedFilter {
 
     if (!this.filter.editing) {
 
@@ -178,14 +178,14 @@ export class NgAdvancedSearchboxAddedFilter {
 
   }
 
-  public setFocus (): NgAdvancedSearchboxAddedFilter {
+  public setFocus (): NgSearchboxAddedFilter {
 
-    let self: NgAdvancedSearchboxAddedFilter = this;
+    let self: NgSearchboxAddedFilter = this;
 
     setTimeout(function () {
 
       let input = self
-        .ngAdvancedSearchboxAddedFilter
+        .ngSearchboxAddedFilter
         .nativeElement
         .querySelector('input');
 
@@ -202,7 +202,7 @@ export class NgAdvancedSearchboxAddedFilter {
 
   }
 
-  public closeFilter (): NgAdvancedSearchboxAddedFilter {
+  public closeFilter (): NgSearchboxAddedFilter {
 
     if (!this.filter.value) {
 
@@ -276,7 +276,7 @@ export class NgAdvancedSearchboxAddedFilter {
     let target = <HTMLElement>event.target,
 
       element: HTMLElement = this
-        .ngAdvancedSearchboxAddedFilter
+        .ngSearchboxAddedFilter
         .nativeElement;
 
     if (!element.contains(target)) {

@@ -1,4 +1,4 @@
-import { NgAdvancedSearchboxComponent } from '../components/ng-advanced-searchbox.component';
+import { NgSearchboxComponent } from '../components/ng-searchbox.component';
 export declare class PlaceholdersService {
     private searchbox;
     private index;
@@ -6,7 +6,7 @@ export declare class PlaceholdersService {
     private val;
     private timer;
     private config;
-    constructor(searchbox: NgAdvancedSearchboxComponent);
+    constructor(searchbox: NgSearchboxComponent);
     setup(): PlaceholdersService;
     start(index: number): void;
     change(reverse?: boolean): void;

@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var utils_service_1 = require('../services/utils.service');
 var ng_templates_1 = require('../ng.templates');
-var NgAdvancedSearchboxAddedFilter = (function () {
-    function NgAdvancedSearchboxAddedFilter(utils, window) {
+var NgSearchboxAddedFilter = (function () {
+    function NgSearchboxAddedFilter(utils, window) {
         this.utils = utils;
         this.window = window;
         this.Filtering = null;
@@ -26,7 +26,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
             .uuid();
         return this;
     }
-    NgAdvancedSearchboxAddedFilter.prototype.set = function (filteringSvc, eventSvc, filter) {
+    NgSearchboxAddedFilter.prototype.set = function (filteringSvc, eventSvc, filter) {
         this.Filtering = filteringSvc;
         this.Event = eventSvc;
         this.filter = filter;
@@ -34,7 +34,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
             .toggleActivation();
         return this;
     };
-    NgAdvancedSearchboxAddedFilter.prototype.toggleActivation = function (force) {
+    NgSearchboxAddedFilter.prototype.toggleActivation = function (force) {
         var _this = this;
         var self = this;
         if (typeof this
@@ -82,7 +82,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
             self.closeFilter();
         }
     };
-    NgAdvancedSearchboxAddedFilter.prototype.openFilter = function () {
+    NgSearchboxAddedFilter.prototype.openFilter = function () {
         if (!this.filter.editing) {
             this
                 .filter
@@ -95,11 +95,11 @@ var NgAdvancedSearchboxAddedFilter = (function () {
         }
         return this;
     };
-    NgAdvancedSearchboxAddedFilter.prototype.setFocus = function () {
+    NgSearchboxAddedFilter.prototype.setFocus = function () {
         var self = this;
         setTimeout(function () {
             var input = self
-                .ngAdvancedSearchboxAddedFilter
+                .ngSearchboxAddedFilter
                 .nativeElement
                 .querySelector('input');
             if (input) {
@@ -109,7 +109,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
         }, 25);
         return this;
     };
-    NgAdvancedSearchboxAddedFilter.prototype.closeFilter = function () {
+    NgSearchboxAddedFilter.prototype.closeFilter = function () {
         if (!this.filter.value) {
             this
                 .Filtering
@@ -122,7 +122,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
         }
         return this;
     };
-    NgAdvancedSearchboxAddedFilter.prototype.valueChange = function (val) {
+    NgSearchboxAddedFilter.prototype.valueChange = function (val) {
         this
             .filter
             .value = val;
@@ -135,7 +135,7 @@ var NgAdvancedSearchboxAddedFilter = (function () {
                 .update(this.filter);
         }
     };
-    NgAdvancedSearchboxAddedFilter.prototype.onKeyDown = function (event) {
+    NgSearchboxAddedFilter.prototype.onKeyDown = function (event) {
         this
             .pv = event
             .target
@@ -145,15 +145,15 @@ var NgAdvancedSearchboxAddedFilter = (function () {
             .$$lastValue = this
             .pv;
     };
-    NgAdvancedSearchboxAddedFilter.prototype.onKeyUp = function (event) {
+    NgSearchboxAddedFilter.prototype.onKeyUp = function (event) {
         if (event.keyCode === 13) {
             this
                 .closeFilter();
         }
     };
-    NgAdvancedSearchboxAddedFilter.prototype.windowClicked = function (event) {
+    NgSearchboxAddedFilter.prototype.windowClicked = function (event) {
         var target = event.target, element = this
-            .ngAdvancedSearchboxAddedFilter
+            .ngSearchboxAddedFilter
             .nativeElement;
         if (!element.contains(target)) {
             this
@@ -165,25 +165,25 @@ var NgAdvancedSearchboxAddedFilter = (function () {
                 .closeFilter();
         }
     };
-    NgAdvancedSearchboxAddedFilter.prototype.destroy = function () {
+    NgSearchboxAddedFilter.prototype.destroy = function () {
         this
             .Filtering
             .removeByComponent(this);
     };
     __decorate([
-        core_1.ViewChild('ngAdvancedSearchboxAddedFilter'), 
+        core_1.ViewChild('ngSearchboxAddedFilter'), 
         __metadata('design:type', core_1.ElementRef)
-    ], NgAdvancedSearchboxAddedFilter.prototype, "ngAdvancedSearchboxAddedFilter");
-    NgAdvancedSearchboxAddedFilter = __decorate([
+    ], NgSearchboxAddedFilter.prototype, "ngSearchboxAddedFilter");
+    NgSearchboxAddedFilter = __decorate([
         core_1.Component({
-            'selector': 'ng-advanced-searchbox-added-filter',
-            'template': ng_templates_1.NgAdvancedSearchboxAddedFilterTemplate,
+            'selector': 'ng-searchbox-added-filter',
+            'template': ng_templates_1.NgSearchboxAddedFilterTemplate,
             'providers': [
                 utils_service_1.UtilsService
             ]
         }), 
         __metadata('design:paramtypes', [utils_service_1.UtilsService, Window])
-    ], NgAdvancedSearchboxAddedFilter);
-    return NgAdvancedSearchboxAddedFilter;
+    ], NgSearchboxAddedFilter);
+    return NgSearchboxAddedFilter;
 }());
-exports.NgAdvancedSearchboxAddedFilter = NgAdvancedSearchboxAddedFilter;
+exports.NgSearchboxAddedFilter = NgSearchboxAddedFilter;

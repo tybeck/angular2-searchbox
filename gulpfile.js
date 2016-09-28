@@ -84,7 +84,7 @@ gulp.task('watch', function () {
     'build'
   ]);
 
-  gulp.watch('src/styles/*.{sass,scss,css}', [
+  gulp.watch('src/styles/**/*.{sass,scss}', [
     'build'
   ]);
 
@@ -132,8 +132,6 @@ function doClean (cb) {
 function doTemplates (cb) {
 
   var templates = '\'use strict\';\r\n\r\n';
-
-  console.log('asdsda template building.');
 
   globby([
     'dist/views/**/*.html'
@@ -185,6 +183,67 @@ function doTemplates (cb) {
       });
 
   });
+
+}
+
+function doStyles (cb) {
+
+  var templates = '\'use strict\';\r\n\r\n';
+
+  setTimeout(function () {
+
+    globby([
+      'dist/styles/**/*.css'
+    ]).then(function (paths) {
+
+      fs
+        .unlink('src/scripts/ng.styles.ts', function () {
+
+          async.each(paths, function (_path, next) {
+
+            fs
+              .readFile(_path, 'utf8', function (err, contents) {
+
+                if (!err && contents) {
+
+                  var name = change.pascalCase(
+                      path
+                        .basename(_path)
+                        .split('.')
+                        .shift()
+                    ) + 'Style';
+
+                  templates += 'export const ' + name +
+
+                    ': string[] = [`' + contents + '`];\r\n';
+
+                }
+
+                return next();
+
+              });
+
+          }, function () {
+
+            fs.writeFile('src/scripts/ng.styles.ts', templates, function (err) {
+
+              if (err) {
+
+                return console.log(err);
+
+              }
+
+              return cb(null);
+
+            });
+
+          });
+
+        });
+
+    });
+
+  }, 3500);
 
 }
 
@@ -299,7 +358,6 @@ function doCopy (cb) {
     .pipe(msg.info('Copying static html for demo: <%= file.relative %>'))
     .pipe(gulp.dest('demo/www/'));
 
-
   gulp
     .src(['demo/src/**/*.js'])
     .pipe(msg.info('Copying static js for demo: <%= file.relative %>'))
@@ -359,6 +417,8 @@ var buildProcess = [
   buildPug,
 
   doTemplates,
+
+  doStyles,
 
   buildTs,
 

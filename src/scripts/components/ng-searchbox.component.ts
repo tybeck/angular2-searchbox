@@ -9,13 +9,16 @@ import {
   AfterViewInit,
   EventEmitter,
   ViewChild,
-  ViewContainerRef,
   ChangeDetectorRef
 } from '@angular/core';
 
 import {
-  NgAdvancedSearchboxTemplate
+  NgSearchboxTemplate
 } from '../ng.templates';
+
+import {
+  NgSearchboxStyle
+} from '../ng.styles';
 
 import {
   UtilsService
@@ -43,28 +46,34 @@ import {
 } from '../definitions/search';
 
 import {
-  NgAdvancedSearchboxAddedFiltersWrapper
-} from './ng-advanced-searchbox-added-filters-wrapper.component';
+  NgSearchboxAddedFiltersWrapper
+} from './ng-searchbox-added-filters-wrapper.component';
+
+import {
+  MemoryService
+} from '../services/memory.service';
 
 let Utils: UtilsService = new UtilsService();
 
 @Component({
 
-  'selector': 'ng-advanced-searchbox',
+  'selector': 'ng-searchbox',
 
-  'template': NgAdvancedSearchboxTemplate
+  'template': NgSearchboxTemplate,
+
+  'styles': NgSearchboxStyle,
+
+  'providers': [
+    MemoryService
+  ]
 
 })
 
-export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
+export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
-  @ViewChild('ngAdvancedSearchboxAddedFilters', { 'read': ViewContainerRef })
+  @ViewChild('ngSearchboxAddedFiltersWrapper')
 
-    ngAdvancedSearchboxAddedFiltersViewContainer: ViewContainerRef;
-
-  @ViewChild('ngAdvancedSearchboxAddedFilters')
-
-  ngAdvancedSearchboxAddedFilters: NgAdvancedSearchboxAddedFiltersWrapper;
+  ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
 
   @Input('searchParams') searchParams: Search.Parameters = null;
 
@@ -74,7 +83,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   @Input('ngSearchBoxAutoComplete') ngSearchBoxAutoComplete: any = null;
 
-  @Input('ngSearchBoxCacheFilter') ngSearchBoxCacheFilter: any = null;
+  @Input('ngSearchBoxCacheFilter') ngSearchBoxCacheFilter: boolean = false;
 
   @Input('ngSearchBoxEnableFilteringOperators') ngSearchBoxEnableFilteringOperators: any = null;
 
@@ -115,9 +124,12 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
   };
 
   constructor (
+    private memory: MemoryService,
     private changeDetectorRef: ChangeDetectorRef,
     private window: Window
   ) {
+
+    console.log(this.memory);
 
     return this;
 
@@ -132,7 +144,10 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   ngAfterViewInit () {
 
-    let self: NgAdvancedSearchboxComponent = <NgAdvancedSearchboxComponent>this;
+    let self: NgSearchboxComponent = <NgSearchboxComponent>this,
+
+      addedFiltersWrapper: NgSearchboxAddedFiltersWrapper = this
+        .ngSearchboxAddedFiltersWrapper;
 
     this.Api = new API();
 
@@ -140,8 +155,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
     this.Filtering = new FilteringService(
       this.Event,
-      this.ngAdvancedSearchboxAddedFilters,
-      this.ngAdvancedSearchboxAddedFiltersViewContainer
+      addedFiltersWrapper
     );
 
     this.Placeholding = new PlaceholdersService(
@@ -220,7 +234,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   }
 
-  public emit (name: string, data?: any): NgAdvancedSearchboxComponent  {
+  public emit (name: string, data?: any): NgSearchboxComponent  {
 
     this
       .onChange
@@ -238,7 +252,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   public queryChange (val: string): void {
 
-    let self: NgAdvancedSearchboxComponent = <NgAdvancedSearchboxComponent>this;
+    let self: NgSearchboxComponent = <NgSearchboxComponent>this;
 
     if (!val && !this.previousQuery && typeof val === 'string' &&
 
@@ -305,7 +319,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   }
 
-  public configure (): NgAdvancedSearchboxComponent {
+  public configure (): NgSearchboxComponent {
 
     this
       .searchParams = this.defaultParams;
@@ -314,7 +328,7 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
   }
 
-  public register (): NgAdvancedSearchboxComponent {
+  public register (): NgSearchboxComponent {
 
     this
       .onRegisterApi
@@ -332,6 +346,17 @@ export class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterVie
 
     this
       .queryChange(this.query);
+
+  }
+
+  public handleSearch (): void {
+
+    this
+      .Event
+      .onChange(
+        this
+          .searchParams
+      );
 
   }
 

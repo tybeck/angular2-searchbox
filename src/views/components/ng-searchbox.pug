@@ -1,0 +1,39 @@
+div.ng-searchbox
+  template(
+    [ngIf]="ngSearchBoxFiltering"
+  )
+    ng-searchbox-filtering(
+      [observer]="onChange"
+    )
+  div.ng-searchbox-wrapper
+    input(
+      [id]="sid",
+      type="text",
+      [(ngModel)]="query",
+      (ngModelChange)="queryChange($event);",
+      (keydown)="onKeyDown($event);",
+      [placeholder]="placeholder"
+    )
+    div.ng-searchbox-buttons
+      template(
+        [ngIf]="hasQuery"
+      )
+        i(
+          class="fa fa-eraser",
+          (click)="handleEraser();"
+        )
+      template(
+        [ngIf]="(hasQuery || (Filtering && Filtering.hasFilters))"
+      )
+        i(
+          class="fa fa-trash",
+          (click)="handleGarbage();"
+        )
+      i(
+        class="fa fa-search",
+        (click)="handleSearch();"
+      )
+  ng-searchbox-added-filters-wrapper(
+    [observer]="onChange",
+    #ngSearchboxAddedFiltersWrapper=""
+  )

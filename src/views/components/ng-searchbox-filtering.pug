@@ -1,6 +1,7 @@
-div.ng-filtering.clearfix
+div.ng-filtering.clearfix(
+  (click)="toggleFilters();"
+)
   span(
-    (click)="toggleFilters();",
     [ngClass]="{ 'active': active }"
   )
     i.fa.fa-filter

@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
-var ng_advanced_searchbox_component_1 = require('./components/ng-advanced-searchbox.component');
-var ng_advanced_searchbox_filtering_component_1 = require('./components/ng-advanced-searchbox-filtering.component');
-var ng_advanced_searchbox_added_filters_wrapper_component_1 = require('./components/ng-advanced-searchbox-added-filters-wrapper.component');
-var ng_advanced_searchbox_added_filter_1 = require('./components/ng-advanced-searchbox-added-filter');
-var ng_advanced_searchbox_filter_selectors_1 = require('./components/ng-advanced-searchbox-filter-selectors');
+var ng_searchbox_component_1 = require('./components/ng-searchbox.component');
+var ng_searchbox_filtering_component_1 = require('./components/ng-searchbox-filtering.component');
+var ng_searchbox_added_filters_wrapper_component_1 = require('./components/ng-searchbox-added-filters-wrapper.component');
+var ng_searchbox_added_filter_1 = require('./components/ng-searchbox-added-filter');
+var ng_searchbox_filter_selectors_1 = require('./components/ng-searchbox-filter-selectors');
 var NgSearchboxModule = (function () {
     function NgSearchboxModule() {
     }
@@ -26,11 +26,11 @@ var NgSearchboxModule = (function () {
                 forms_1.FormsModule
             ],
             'declarations': [
-                ng_advanced_searchbox_component_1.NgAdvancedSearchboxComponent,
-                ng_advanced_searchbox_filtering_component_1.NgAdvancedSearchboxFilteringComponent,
-                ng_advanced_searchbox_added_filters_wrapper_component_1.NgAdvancedSearchboxAddedFiltersWrapper,
-                ng_advanced_searchbox_added_filter_1.NgAdvancedSearchboxAddedFilter,
-                ng_advanced_searchbox_filter_selectors_1.NgAdvancedSearchboxFilterSelectors
+                ng_searchbox_component_1.NgSearchboxComponent,
+                ng_searchbox_filtering_component_1.NgSearchboxFilteringComponent,
+                ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper,
+                ng_searchbox_added_filter_1.NgSearchboxAddedFilter,
+                ng_searchbox_filter_selectors_1.NgSearchboxFilterSelectors
             ],
             'providers': [
                 {
@@ -42,7 +42,7 @@ var NgSearchboxModule = (function () {
                 }
             ],
             'exports': [
-                ng_advanced_searchbox_component_1.NgAdvancedSearchboxComponent
+                ng_searchbox_component_1.NgSearchboxComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

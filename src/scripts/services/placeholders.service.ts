@@ -9,8 +9,8 @@ import {
 } from '../definitions/search';
 
 import {
-  NgAdvancedSearchboxComponent
-} from '../components/ng-advanced-searchbox.component';
+  NgSearchboxComponent
+} from '../components/ng-searchbox.component';
 
 @Injectable()
 export class PlaceholdersService {
@@ -26,7 +26,7 @@ export class PlaceholdersService {
   private config: Search.Configuration = null;
 
   constructor (
-    private searchbox: NgAdvancedSearchboxComponent
+    private searchbox: NgSearchboxComponent
   ) {
 
     this

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ng_advanced_searchbox_component_1 = require('../components/ng-advanced-searchbox.component');
+var ng_searchbox_component_1 = require('../components/ng-searchbox.component');
 var PlaceholdersService = (function () {
     function PlaceholdersService(searchbox) {
         this.searchbox = searchbox;
@@ -94,7 +94,7 @@ var PlaceholdersService = (function () {
     };
     PlaceholdersService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [ng_advanced_searchbox_component_1.NgAdvancedSearchboxComponent])
+        __metadata('design:paramtypes', [ng_searchbox_component_1.NgSearchboxComponent])
     ], PlaceholdersService);
     return PlaceholdersService;
 }());

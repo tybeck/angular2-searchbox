@@ -1,7 +1,7 @@
 import { EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Search, ModifiedSearch } from '../definitions/search';
 import { FilteringService } from '../services/filtering.service';
-export declare class NgAdvancedSearchboxFilteringComponent implements AfterViewInit {
+export declare class NgSearchboxFilteringComponent implements AfterViewInit {
     private changeDetectionRef;
     observer: EventEmitter<Search.BindingEventChange>;
     Filtering: FilteringService;

@@ -1,5 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { NgAdvancedSearchboxAddedFilter } from '../components/ng-advanced-searchbox-added-filter';
+import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter';
 export declare namespace Search {
     const FilteringChange: string;
     const FilteringServiceChange: string;
@@ -72,7 +72,7 @@ export declare namespace ModifiedSearch {
     }
 }
 export interface AddedFilter {
-    component: ComponentRef<NgAdvancedSearchboxAddedFilter>;
+    component: ComponentRef<NgSearchboxAddedFilter>;
     filter: ModifiedSearch.ModifiedFilter;
 }
 export declare const SELECTORS: Search.Selector[];

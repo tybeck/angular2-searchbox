@@ -30,7 +30,7 @@
 
         'lodash': 'npm:lodash',
 
-        'tyb-advanced-searchbox': 'npm:tyb-advanced-searchbox',
+        'angular2-searchbox': 'npm:angular2-searchbox',
 
         'rxjs': 'npm:rxjs',
 
@@ -70,7 +70,7 @@
 
         },
 
-        'npm:tyb-advanced-searchbox': {
+        'npm:angular2-searchbox': {
 
           'defaultExtension': 'js',
 

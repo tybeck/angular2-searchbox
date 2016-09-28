@@ -10,19 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng_templates_1 = require('../ng.templates');
+var ng_styles_1 = require('../ng.styles');
 var search_1 = require('../definitions/search');
-var NgAdvancedSearchboxFilteringComponent = (function () {
-    function NgAdvancedSearchboxFilteringComponent(changeDetectionRef) {
+var NgSearchboxFilteringComponent = (function () {
+    function NgSearchboxFilteringComponent(changeDetectionRef) {
         this.changeDetectionRef = changeDetectionRef;
         this.observer = null;
         this.Filtering = null;
         this.active = false;
         return this;
     }
-    NgAdvancedSearchboxFilteringComponent.prototype.toggleFilters = function () {
+    NgSearchboxFilteringComponent.prototype.toggleFilters = function () {
         this.active = !this.active;
     };
-    NgAdvancedSearchboxFilteringComponent.prototype.ngAfterViewInit = function () {
+    NgSearchboxFilteringComponent.prototype.ngAfterViewInit = function () {
         var self = this;
         this
             .observer
@@ -42,14 +43,14 @@ var NgAdvancedSearchboxFilteringComponent = (function () {
                 .detectChanges();
         });
     };
-    NgAdvancedSearchboxFilteringComponent.prototype.addFilterAndClose = function (filter) {
+    NgSearchboxFilteringComponent.prototype.addFilterAndClose = function (filter) {
         this.active = false;
         this
             .Filtering
             .add(filter);
         return;
     };
-    NgAdvancedSearchboxFilteringComponent.prototype.addFilter = function (event, name) {
+    NgSearchboxFilteringComponent.prototype.addFilter = function (event, name) {
         var self = this;
         if (this.availableFilters) {
             this
@@ -78,14 +79,15 @@ var NgAdvancedSearchboxFilteringComponent = (function () {
     __decorate([
         core_1.Input('observer'), 
         __metadata('design:type', core_1.EventEmitter)
-    ], NgAdvancedSearchboxFilteringComponent.prototype, "observer");
-    NgAdvancedSearchboxFilteringComponent = __decorate([
+    ], NgSearchboxFilteringComponent.prototype, "observer");
+    NgSearchboxFilteringComponent = __decorate([
         core_1.Component({
-            'selector': 'ng-advanced-searchbox-filtering',
-            'template': ng_templates_1.NgAdvancedSearchboxFilteringTemplate
+            'selector': 'ng-searchbox-filtering',
+            'template': ng_templates_1.NgSearchboxFilteringTemplate,
+            'styles': ng_styles_1.NgSearchboxFilteringStyle
         }), 
         __metadata('design:paramtypes', [core_1.ChangeDetectorRef])
-    ], NgAdvancedSearchboxFilteringComponent);
-    return NgAdvancedSearchboxFilteringComponent;
+    ], NgSearchboxFilteringComponent);
+    return NgSearchboxFilteringComponent;
 }());
-exports.NgAdvancedSearchboxFilteringComponent = NgAdvancedSearchboxFilteringComponent;
+exports.NgSearchboxFilteringComponent = NgSearchboxFilteringComponent;

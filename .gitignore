@@ -4,3 +4,4 @@ node_modules
 dist/views
 .sass-cache
 npm-debug.log
+src/styles/**/*.css

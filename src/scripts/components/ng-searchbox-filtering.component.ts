@@ -9,8 +9,12 @@ import {
 } from '@angular/core';
 
 import {
-  NgAdvancedSearchboxFilteringTemplate
+  NgSearchboxFilteringTemplate
 } from '../ng.templates';
+
+import {
+  NgSearchboxFilteringStyle
+} from '../ng.styles';
 
 import {
   Search,
@@ -23,13 +27,15 @@ import {
 
 @Component({
 
-  'selector': 'ng-advanced-searchbox-filtering',
+  'selector': 'ng-searchbox-filtering',
 
-  'template': NgAdvancedSearchboxFilteringTemplate
+  'template': NgSearchboxFilteringTemplate,
+
+  'styles': NgSearchboxFilteringStyle
 
 })
 
-export class NgAdvancedSearchboxFilteringComponent implements AfterViewInit {
+export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   @Input('observer') observer: EventEmitter<Search.BindingEventChange> = null;
 
@@ -55,7 +61,7 @@ export class NgAdvancedSearchboxFilteringComponent implements AfterViewInit {
 
   ngAfterViewInit () {
 
-    let self: NgAdvancedSearchboxFilteringComponent = <NgAdvancedSearchboxFilteringComponent>this;
+    let self: NgSearchboxFilteringComponent = <NgSearchboxFilteringComponent>this;
 
     this
       .observer
@@ -101,7 +107,7 @@ export class NgAdvancedSearchboxFilteringComponent implements AfterViewInit {
 
   public addFilter(event: MouseEvent, name: string): void {
 
-    let self: NgAdvancedSearchboxFilteringComponent = <NgAdvancedSearchboxFilteringComponent>this;
+    let self: NgSearchboxFilteringComponent = <NgSearchboxFilteringComponent>this;
 
     if (this.availableFilters) {
 

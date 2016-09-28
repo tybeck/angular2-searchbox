@@ -10,17 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var _ = require('lodash');
 var core_1 = require('@angular/core');
-var ng_advanced_searchbox_added_filters_wrapper_component_1 = require('../components/ng-advanced-searchbox-added-filters-wrapper.component');
-var ng_advanced_searchbox_added_filter_1 = require('../components/ng-advanced-searchbox-added-filter');
+var ng_searchbox_added_filters_wrapper_component_1 = require('../components/ng-searchbox-added-filters-wrapper.component');
+var ng_searchbox_added_filter_1 = require('../components/ng-searchbox-added-filter');
 var event_handling_service_1 = require('../services/event-handling.service');
 var validation_service_1 = require('../services/validation.service');
 var utils_service_1 = require('../services/utils.service');
 var validation = new validation_service_1.ValidationService(), utils = new utils_service_1.UtilsService();
 var FilteringService = (function () {
-    function FilteringService(eventSvc, tybAdvancedSearchboxAddedFilters, viewContainer) {
+    function FilteringService(eventSvc, ngSearchboxAddedFilters) {
         this.eventSvc = eventSvc;
-        this.tybAdvancedSearchboxAddedFilters = tybAdvancedSearchboxAddedFilters;
-        this.viewContainer = viewContainer;
+        this.ngSearchboxAddedFilters = ngSearchboxAddedFilters;
         this.addedFilters = [];
         this.hasFilters = false;
         this.event = null;
@@ -33,10 +32,11 @@ var FilteringService = (function () {
     };
     FilteringService.prototype.add = function (filter) {
         var factory = this
-            .tybAdvancedSearchboxAddedFilters
+            .ngSearchboxAddedFilters
             .componentFactoryResolver
-            .resolveComponentFactory(ng_advanced_searchbox_added_filter_1.NgAdvancedSearchboxAddedFilter), cmpRef = this
-            .viewContainer
+            .resolveComponentFactory(ng_searchbox_added_filter_1.NgSearchboxAddedFilter), cmpRef = this
+            .ngSearchboxAddedFilters
+            .ngSearchboxAddedFiltersViewContainer
             .createComponent(factory);
         var modifiedFilter = _.clone(filter);
         modifiedFilter.uuid = utils.uuid();
@@ -146,7 +146,7 @@ var FilteringService = (function () {
     };
     FilteringService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [event_handling_service_1.EventHandling, ng_advanced_searchbox_added_filters_wrapper_component_1.NgAdvancedSearchboxAddedFiltersWrapper, core_1.ViewContainerRef])
+        __metadata('design:paramtypes', [event_handling_service_1.EventHandling, ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper])
     ], FilteringService);
     return FilteringService;
 }());

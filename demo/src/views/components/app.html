@@ -1,9 +1,10 @@
 <div>
-  Hello World
-  <tyb-advanced-searchbox
-    [tybSearchBoxFiltering]="tybFilters"
-    [tybSearchBoxConfig]="tybConfig"
+  Ng Searchbox
+  <ng-searchbox
+    [ngSearchBoxFiltering]="tybFilters"
+    [ngSearchBoxConfig]="tybConfig"
+    [ngSearchBoxCacheFilter]="true"
     (onRegisterApi)="register($event);"
     [placeholder]="'Search...'"
-  ></tyb-advanced-searchbox>
+  ></ng-searchbox>
 </div>

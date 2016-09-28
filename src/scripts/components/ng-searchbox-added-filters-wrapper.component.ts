@@ -6,16 +6,18 @@ import {
   AfterViewInit,
   Input,
   EventEmitter,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewChild,
+  ViewContainerRef
 } from '@angular/core';
 
 import {
-  NgAdvancedSearchboxAddedFiltersWrapperTemplate
+  NgSearchboxAddedFiltersWrapperTemplate
 } from '../ng.templates';
 
 import {
-  NgAdvancedSearchboxAddedFilter
-} from './ng-advanced-searchbox-added-filter';
+  NgSearchboxAddedFilter
+} from './ng-searchbox-added-filter';
 
 import {
   Search,
@@ -28,17 +30,25 @@ import {
 
 @Component({
 
-  'selector': 'ng-advanced-searchbox-added-filters-wrapper',
+  'selector': 'ng-searchbox-added-filters-wrapper',
 
-  'template': NgAdvancedSearchboxAddedFiltersWrapperTemplate,
+  'template': NgSearchboxAddedFiltersWrapperTemplate,
 
   'entryComponents': [
-    NgAdvancedSearchboxAddedFilter
+    NgSearchboxAddedFilter
   ]
 
 })
 
-export class NgAdvancedSearchboxAddedFiltersWrapper implements AfterViewInit {
+export class NgSearchboxAddedFiltersWrapper implements AfterViewInit {
+
+  @ViewChild('ngSearchboxAddedFilters', { 'read': ViewContainerRef })
+
+    public ngSearchboxAddedFiltersViewContainer: ViewContainerRef;
+
+  @ViewChild('ngSearchboxAddedFilters')
+
+    public ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper;
 
   @Input('observer') observer: EventEmitter<Search.BindingEventChange> = null;
 
@@ -55,7 +65,7 @@ export class NgAdvancedSearchboxAddedFiltersWrapper implements AfterViewInit {
 
   ngAfterViewInit () {
 
-    let self: NgAdvancedSearchboxAddedFiltersWrapper = <NgAdvancedSearchboxAddedFiltersWrapper>this;
+    let self: NgSearchboxAddedFiltersWrapper = <NgSearchboxAddedFiltersWrapper>this;
 
     this
       .observer

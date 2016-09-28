@@ -1,5 +1,5 @@
-export declare const NgAdvancedSearchboxAddedFilterTemplate: string;
-export declare const NgAdvancedSearchboxFilterSelectorsTemplate: string;
-export declare const NgAdvancedSearchboxAddedFiltersWrapperTemplate: string;
-export declare const NgAdvancedSearchboxFilteringTemplate: string;
-export declare const NgAdvancedSearchboxTemplate: string;
+export declare const NgSearchboxAddedFilterTemplate: string;
+export declare const NgSearchboxAddedFiltersWrapperTemplate: string;
+export declare const NgSearchboxTemplate: string;
+export declare const NgSearchboxFilterSelectorsTemplate: string;
+export declare const NgSearchboxFilteringTemplate: string;

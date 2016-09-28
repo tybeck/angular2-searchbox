@@ -1,11 +1,11 @@
-div.ng-advanced-searchbox-added-filter(
-  #ngAdvancedSearchboxAddedFilter=""
+div.ng-searchbox-added-filter(
+  #ngSearchboxAddedFilter=""
 )
-  div.ng-advanced-searchbox-added-filter-contents(
+  div.ng-searchbox-added-filter-contents(
     (click)="openFilter();"
   )
     span(
-      class="ng-advanced-searchbox-filter-name",
+      class="ng-searchbox-filter-name",
       [innerText]="filter.displayName + ':'"
     )
     template(
@@ -32,7 +32,7 @@ div.ng-advanced-searchbox-added-filter(
       (keydown)="onKeyDown($event);",
       (keyup)="onKeyUp($event);"
     )
-  ng-advanced-searchbox-filter-selectors(
+  ng-searchbox-filter-selectors(
     [filter]="filter"
   )
   i(

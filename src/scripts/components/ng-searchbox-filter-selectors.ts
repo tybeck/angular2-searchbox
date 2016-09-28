@@ -13,11 +13,11 @@ import {
 } from '@angular/core';
 
 import {
-  NgAdvancedSearchboxAddedFilter
-} from '../components/ng-advanced-searchbox-added-filter';
+  NgSearchboxAddedFilter
+} from '../components/ng-searchbox-added-filter';
 
 import {
-  NgAdvancedSearchboxFilterSelectorsTemplate
+  NgSearchboxFilterSelectorsTemplate
 } from '../ng.templates';
 
 import {
@@ -28,20 +28,20 @@ import {
 
 @Component({
 
-  'selector': 'ng-advanced-searchbox-filter-selectors',
+  'selector': 'ng-searchbox-filter-selectors',
 
-  'template': NgAdvancedSearchboxFilterSelectorsTemplate
+  'template': NgSearchboxFilterSelectorsTemplate
 
 })
 
-export class NgAdvancedSearchboxFilterSelectors implements AfterViewInit {
+export class NgSearchboxFilterSelectors implements AfterViewInit {
 
   @Input('filter') filter: ModifiedSearch.ModifiedFilter = null;
 
   public selectors: Search.Selector[] = _.clone(SELECTORS);
 
   constructor (
-    @Inject(forwardRef(() => NgAdvancedSearchboxAddedFilter)) private ngAddedFilter: NgAdvancedSearchboxAddedFilter,
+    @Inject(forwardRef(() => NgSearchboxAddedFilter)) private ngAddedFilter: NgSearchboxAddedFilter,
     private zone: NgZone
   ) {
 
@@ -51,7 +51,7 @@ export class NgAdvancedSearchboxFilterSelectors implements AfterViewInit {
 
   public takeSelector (selector: Search.Selector): void {
 
-    let self: NgAdvancedSearchboxFilterSelectors = this;
+    let self: NgSearchboxFilterSelectors = this;
 
     self
       .selectors
@@ -88,9 +88,9 @@ export class NgAdvancedSearchboxFilterSelectors implements AfterViewInit {
 
   }
 
-  public getDefaultSelector(): NgAdvancedSearchboxFilterSelectors {
+  public getDefaultSelector(): NgSearchboxFilterSelectors {
 
-    let self: NgAdvancedSearchboxFilterSelectors = this;
+    let self: NgSearchboxFilterSelectors = this;
 
     setTimeout((): void => {
 

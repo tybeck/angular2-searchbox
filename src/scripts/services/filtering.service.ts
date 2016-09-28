@@ -10,12 +10,12 @@ import {
 } from '@angular/core';
 
 import {
-  NgAdvancedSearchboxAddedFiltersWrapper
-} from '../components/ng-advanced-searchbox-added-filters-wrapper.component';
+  NgSearchboxAddedFiltersWrapper
+} from '../components/ng-searchbox-added-filters-wrapper.component';
 
 import {
-  NgAdvancedSearchboxAddedFilter
-} from '../components/ng-advanced-searchbox-added-filter';
+  NgSearchboxAddedFilter
+} from '../components/ng-searchbox-added-filter';
 
 import {
   EventHandling
@@ -52,8 +52,7 @@ export class FilteringService {
 
   constructor (
     private eventSvc: EventHandling,
-    private tybAdvancedSearchboxAddedFilters: NgAdvancedSearchboxAddedFiltersWrapper,
-    private viewContainer: ViewContainerRef
+    private ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper
   ) {
 
     this.event = new EventEmitter<ModifiedSearch.ModifiedFilter[]>();
@@ -71,14 +70,15 @@ export class FilteringService {
   public add (filter: Search.AvailableFilter): void {
 
     let factory = this
-      .tybAdvancedSearchboxAddedFilters
+      .ngSearchboxAddedFilters
       .componentFactoryResolver
       .resolveComponentFactory(
-        NgAdvancedSearchboxAddedFilter
+        NgSearchboxAddedFilter
       ),
 
-      cmpRef: ComponentRef<NgAdvancedSearchboxAddedFilter> = this
-        .viewContainer
+      cmpRef: ComponentRef<NgSearchboxAddedFilter> = this
+        .ngSearchboxAddedFilters
+        .ngSearchboxAddedFiltersViewContainer
         .createComponent(factory);
 
     let modifiedFilter: ModifiedSearch.ModifiedFilter =
@@ -115,7 +115,7 @@ export class FilteringService {
 
   }
 
-  public removeByComponent (filter: NgAdvancedSearchboxAddedFilter): void {
+  public removeByComponent (filter: NgSearchboxAddedFilter): void {
 
     let self: FilteringService = <FilteringService>this;
 

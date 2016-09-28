@@ -10,23 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng_templates_1 = require('../ng.templates');
+var ng_styles_1 = require('../ng.styles');
 var utils_service_1 = require('../services/utils.service');
 var event_handling_service_1 = require('../services/event-handling.service');
 var api_service_1 = require('../services/api.service');
 var filtering_service_1 = require('../services/filtering.service');
 var placeholders_service_1 = require('../services/placeholders.service');
 var search_1 = require('../definitions/search');
-var ng_advanced_searchbox_added_filters_wrapper_component_1 = require('./ng-advanced-searchbox-added-filters-wrapper.component');
+var ng_searchbox_added_filters_wrapper_component_1 = require('./ng-searchbox-added-filters-wrapper.component');
+var memory_service_1 = require('../services/memory.service');
 var Utils = new utils_service_1.UtilsService();
-var NgAdvancedSearchboxComponent = (function () {
-    function NgAdvancedSearchboxComponent(changeDetectorRef, window) {
+var NgSearchboxComponent = (function () {
+    function NgSearchboxComponent(memory, changeDetectorRef, window) {
+        this.memory = memory;
         this.changeDetectorRef = changeDetectorRef;
         this.window = window;
         this.searchParams = null;
         this.ngSearchBoxFiltering = null;
         this.ngSearchBoxConfig = null;
         this.ngSearchBoxAutoComplete = null;
-        this.ngSearchBoxCacheFilter = null;
+        this.ngSearchBoxCacheFilter = false;
         this.ngSearchBoxEnableFilteringOperators = null;
         this.ngSearchBoxFilterSelectors = null;
         this.ngSearchBoxFilterOperators = null;
@@ -46,17 +49,19 @@ var NgAdvancedSearchboxComponent = (function () {
             'query': '',
             'filters': []
         };
+        console.log(this.memory);
         return this;
     }
-    NgAdvancedSearchboxComponent.prototype.ngOnInit = function () {
+    NgSearchboxComponent.prototype.ngOnInit = function () {
         this
             .configure();
     };
-    NgAdvancedSearchboxComponent.prototype.ngAfterViewInit = function () {
-        var self = this;
+    NgSearchboxComponent.prototype.ngAfterViewInit = function () {
+        var self = this, addedFiltersWrapper = this
+            .ngSearchboxAddedFiltersWrapper;
         this.Api = new api_service_1.API();
         this.Event = new event_handling_service_1.EventHandling(this.Api);
-        this.Filtering = new filtering_service_1.FilteringService(this.Event, this.ngAdvancedSearchboxAddedFilters, this.ngAdvancedSearchboxAddedFiltersViewContainer);
+        this.Filtering = new filtering_service_1.FilteringService(this.Event, addedFiltersWrapper);
         this.Placeholding = new placeholders_service_1.PlaceholdersService(this);
         this
             .Filtering
@@ -97,9 +102,9 @@ var NgAdvancedSearchboxComponent = (function () {
             .changeDetectorRef
             .detectChanges();
     };
-    NgAdvancedSearchboxComponent.prototype.ngOnChanges = function () {
+    NgSearchboxComponent.prototype.ngOnChanges = function () {
     };
-    NgAdvancedSearchboxComponent.prototype.emit = function (name, data) {
+    NgSearchboxComponent.prototype.emit = function (name, data) {
         this
             .onChange
             .emit({
@@ -108,7 +113,7 @@ var NgAdvancedSearchboxComponent = (function () {
         });
         return this;
     };
-    NgAdvancedSearchboxComponent.prototype.queryChange = function (val) {
+    NgSearchboxComponent.prototype.queryChange = function (val) {
         var _this = this;
         var self = this;
         if (!val && !this.previousQuery && typeof val === 'string' &&
@@ -148,30 +153,36 @@ var NgAdvancedSearchboxComponent = (function () {
             }
         }
     };
-    NgAdvancedSearchboxComponent.prototype.onKeyDown = function (event) {
+    NgSearchboxComponent.prototype.onKeyDown = function (event) {
         this
             .previousQuery = event
             .target
             .value;
     };
-    NgAdvancedSearchboxComponent.prototype.configure = function () {
+    NgSearchboxComponent.prototype.configure = function () {
         this
             .searchParams = this.defaultParams;
         return this;
     };
-    NgAdvancedSearchboxComponent.prototype.register = function () {
+    NgSearchboxComponent.prototype.register = function () {
         this
             .onRegisterApi
             .emit(this.Api);
         return this;
     };
-    NgAdvancedSearchboxComponent.prototype.eraseQuery = function () {
+    NgSearchboxComponent.prototype.eraseQuery = function () {
         this.previousQuery = null;
         this.query = '';
         this
             .queryChange(this.query);
     };
-    NgAdvancedSearchboxComponent.prototype.handleEraser = function () {
+    NgSearchboxComponent.prototype.handleSearch = function () {
+        this
+            .Event
+            .onChange(this
+            .searchParams);
+    };
+    NgSearchboxComponent.prototype.handleEraser = function () {
         if (this
             .searchParams
             .query) {
@@ -182,7 +193,7 @@ var NgAdvancedSearchboxComponent = (function () {
                 .onEraser();
         }
     };
-    NgAdvancedSearchboxComponent.prototype.handleGarbage = function () {
+    NgSearchboxComponent.prototype.handleGarbage = function () {
         if (this
             .searchParams
             .query || this.Filtering.hasFilters) {
@@ -197,60 +208,60 @@ var NgAdvancedSearchboxComponent = (function () {
         }
     };
     __decorate([
-        core_1.ViewChild('ngAdvancedSearchboxAddedFilters', { 'read': core_1.ViewContainerRef }), 
-        __metadata('design:type', core_1.ViewContainerRef)
-    ], NgAdvancedSearchboxComponent.prototype, "ngAdvancedSearchboxAddedFiltersViewContainer");
-    __decorate([
-        core_1.ViewChild('ngAdvancedSearchboxAddedFilters'), 
-        __metadata('design:type', ng_advanced_searchbox_added_filters_wrapper_component_1.NgAdvancedSearchboxAddedFiltersWrapper)
-    ], NgAdvancedSearchboxComponent.prototype, "ngAdvancedSearchboxAddedFilters");
+        core_1.ViewChild('ngSearchboxAddedFiltersWrapper'), 
+        __metadata('design:type', ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper)
+    ], NgSearchboxComponent.prototype, "ngSearchboxAddedFiltersWrapper");
     __decorate([
         core_1.Input('searchParams'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "searchParams");
+    ], NgSearchboxComponent.prototype, "searchParams");
     __decorate([
         core_1.Input('ngSearchBoxFiltering'), 
         __metadata('design:type', Array)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxFiltering");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxFiltering");
     __decorate([
         core_1.Input('ngSearchBoxConfig'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxConfig");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxConfig");
     __decorate([
         core_1.Input('ngSearchBoxAutoComplete'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxAutoComplete");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxAutoComplete");
     __decorate([
         core_1.Input('ngSearchBoxCacheFilter'), 
-        __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxCacheFilter");
+        __metadata('design:type', Boolean)
+    ], NgSearchboxComponent.prototype, "ngSearchBoxCacheFilter");
     __decorate([
         core_1.Input('ngSearchBoxEnableFilteringOperators'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxEnableFilteringOperators");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxEnableFilteringOperators");
     __decorate([
         core_1.Input('ngSearchBoxFilterSelectors'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxFilterSelectors");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxFilterSelectors");
     __decorate([
         core_1.Input('ngSearchBoxFilterOperators'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxComponent.prototype, "ngSearchBoxFilterOperators");
+    ], NgSearchboxComponent.prototype, "ngSearchBoxFilterOperators");
     __decorate([
         core_1.Input('placeholder'), 
         __metadata('design:type', String)
-    ], NgAdvancedSearchboxComponent.prototype, "placeholder");
+    ], NgSearchboxComponent.prototype, "placeholder");
     __decorate([
         core_1.Output('onRegisterApi'), 
         __metadata('design:type', core_1.EventEmitter)
-    ], NgAdvancedSearchboxComponent.prototype, "onRegisterApi");
-    NgAdvancedSearchboxComponent = __decorate([
+    ], NgSearchboxComponent.prototype, "onRegisterApi");
+    NgSearchboxComponent = __decorate([
         core_1.Component({
-            'selector': 'ng-advanced-searchbox',
-            'template': ng_templates_1.NgAdvancedSearchboxTemplate
+            'selector': 'ng-searchbox',
+            'template': ng_templates_1.NgSearchboxTemplate,
+            'styles': ng_styles_1.NgSearchboxStyle,
+            'providers': [
+                memory_service_1.MemoryService
+            ]
         }), 
-        __metadata('design:paramtypes', [core_1.ChangeDetectorRef, Window])
-    ], NgAdvancedSearchboxComponent);
-    return NgAdvancedSearchboxComponent;
+        __metadata('design:paramtypes', [memory_service_1.MemoryService, core_1.ChangeDetectorRef, Window])
+    ], NgSearchboxComponent);
+    return NgSearchboxComponent;
 }());
-exports.NgAdvancedSearchboxComponent = NgAdvancedSearchboxComponent;
+exports.NgSearchboxComponent = NgSearchboxComponent;

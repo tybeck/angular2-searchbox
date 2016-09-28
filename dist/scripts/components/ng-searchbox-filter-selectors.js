@@ -13,18 +13,18 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var _ = require('lodash');
 var core_1 = require('@angular/core');
-var ng_advanced_searchbox_added_filter_1 = require('../components/ng-advanced-searchbox-added-filter');
+var ng_searchbox_added_filter_1 = require('../components/ng-searchbox-added-filter');
 var ng_templates_1 = require('../ng.templates');
 var search_1 = require('../definitions/search');
-var NgAdvancedSearchboxFilterSelectors = (function () {
-    function NgAdvancedSearchboxFilterSelectors(ngAddedFilter, zone) {
+var NgSearchboxFilterSelectors = (function () {
+    function NgSearchboxFilterSelectors(ngAddedFilter, zone) {
         this.ngAddedFilter = ngAddedFilter;
         this.zone = zone;
         this.filter = null;
         this.selectors = _.clone(search_1.SELECTORS);
         return this;
     }
-    NgAdvancedSearchboxFilterSelectors.prototype.takeSelector = function (selector) {
+    NgSearchboxFilterSelectors.prototype.takeSelector = function (selector) {
         var self = this;
         self
             .selectors
@@ -48,7 +48,7 @@ var NgAdvancedSearchboxFilterSelectors = (function () {
             .ngAddedFilter
             .setFocus();
     };
-    NgAdvancedSearchboxFilterSelectors.prototype.getDefaultSelector = function () {
+    NgSearchboxFilterSelectors.prototype.getDefaultSelector = function () {
         var self = this;
         setTimeout(function () {
             if (!self
@@ -86,22 +86,22 @@ var NgAdvancedSearchboxFilterSelectors = (function () {
         }, 0);
         return this;
     };
-    NgAdvancedSearchboxFilterSelectors.prototype.ngAfterViewInit = function () {
+    NgSearchboxFilterSelectors.prototype.ngAfterViewInit = function () {
         this
             .getDefaultSelector();
     };
     __decorate([
         core_1.Input('filter'), 
         __metadata('design:type', Object)
-    ], NgAdvancedSearchboxFilterSelectors.prototype, "filter");
-    NgAdvancedSearchboxFilterSelectors = __decorate([
+    ], NgSearchboxFilterSelectors.prototype, "filter");
+    NgSearchboxFilterSelectors = __decorate([
         core_1.Component({
-            'selector': 'ng-advanced-searchbox-filter-selectors',
-            'template': ng_templates_1.NgAdvancedSearchboxFilterSelectorsTemplate
+            'selector': 'ng-searchbox-filter-selectors',
+            'template': ng_templates_1.NgSearchboxFilterSelectorsTemplate
         }),
-        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_advanced_searchbox_added_filter_1.NgAdvancedSearchboxAddedFilter; }))), 
-        __metadata('design:paramtypes', [ng_advanced_searchbox_added_filter_1.NgAdvancedSearchboxAddedFilter, core_1.NgZone])
-    ], NgAdvancedSearchboxFilterSelectors);
-    return NgAdvancedSearchboxFilterSelectors;
+        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_1.NgSearchboxAddedFilter; }))), 
+        __metadata('design:paramtypes', [ng_searchbox_added_filter_1.NgSearchboxAddedFilter, core_1.NgZone])
+    ], NgSearchboxFilterSelectors);
+    return NgSearchboxFilterSelectors;
 }());
-exports.NgAdvancedSearchboxFilterSelectors = NgAdvancedSearchboxFilterSelectors;
+exports.NgSearchboxFilterSelectors = NgSearchboxFilterSelectors;

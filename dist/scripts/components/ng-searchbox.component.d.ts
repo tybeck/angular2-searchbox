@@ -1,20 +1,21 @@
-import { OnInit, OnChanges, AfterViewInit, EventEmitter, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
+import { OnInit, OnChanges, AfterViewInit, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { EventHandling } from '../services/event-handling.service';
 import { API } from '../services/api.service';
 import { FilteringService } from '../services/filtering.service';
 import { PlaceholdersService } from '../services/placeholders.service';
 import { Search } from '../definitions/search';
-import { NgAdvancedSearchboxAddedFiltersWrapper } from './ng-advanced-searchbox-added-filters-wrapper.component';
-export declare class NgAdvancedSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
+import { NgSearchboxAddedFiltersWrapper } from './ng-searchbox-added-filters-wrapper.component';
+import { MemoryService } from '../services/memory.service';
+export declare class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
+    private memory;
     private changeDetectorRef;
     private window;
-    ngAdvancedSearchboxAddedFiltersViewContainer: ViewContainerRef;
-    ngAdvancedSearchboxAddedFilters: NgAdvancedSearchboxAddedFiltersWrapper;
+    ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
     searchParams: Search.Parameters;
     ngSearchBoxFiltering: Search.AvailableFilter[];
     ngSearchBoxConfig: any;
     ngSearchBoxAutoComplete: any;
-    ngSearchBoxCacheFilter: any;
+    ngSearchBoxCacheFilter: boolean;
     ngSearchBoxEnableFilteringOperators: any;
     ngSearchBoxFilterSelectors: any;
     ngSearchBoxFilterOperators: any;
@@ -31,16 +32,17 @@ export declare class NgAdvancedSearchboxComponent implements OnInit, OnChanges, 
     sid: string;
     timer: any;
     defaultParams: Search.Parameters;
-    constructor(changeDetectorRef: ChangeDetectorRef, window: Window);
+    constructor(memory: MemoryService, changeDetectorRef: ChangeDetectorRef, window: Window);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
-    emit(name: string, data?: any): NgAdvancedSearchboxComponent;
+    emit(name: string, data?: any): NgSearchboxComponent;
     queryChange(val: string): void;
     onKeyDown(event: any): void;
-    configure(): NgAdvancedSearchboxComponent;
-    register(): NgAdvancedSearchboxComponent;
+    configure(): NgSearchboxComponent;
+    register(): NgSearchboxComponent;
     eraseQuery(): void;
+    handleSearch(): void;
     handleEraser(): void;
     handleGarbage(): void;
 }

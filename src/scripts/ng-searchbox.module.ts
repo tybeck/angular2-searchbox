@@ -13,24 +13,24 @@ import {
 } from '@angular/forms';
 
 import {
-  NgAdvancedSearchboxComponent
-} from './components/ng-advanced-searchbox.component';
+  NgSearchboxComponent
+} from './components/ng-searchbox.component';
 
 import {
-  NgAdvancedSearchboxFilteringComponent
-} from './components/ng-advanced-searchbox-filtering.component';
+  NgSearchboxFilteringComponent
+} from './components/ng-searchbox-filtering.component';
 
 import {
-  NgAdvancedSearchboxAddedFiltersWrapper
-} from './components/ng-advanced-searchbox-added-filters-wrapper.component';
+  NgSearchboxAddedFiltersWrapper
+} from './components/ng-searchbox-added-filters-wrapper.component';
 
 import {
-  NgAdvancedSearchboxAddedFilter
-} from './components/ng-advanced-searchbox-added-filter';
+  NgSearchboxAddedFilter
+} from './components/ng-searchbox-added-filter';
 
 import {
-  NgAdvancedSearchboxFilterSelectors
-} from './components/ng-advanced-searchbox-filter-selectors';
+  NgSearchboxFilterSelectors
+} from './components/ng-searchbox-filter-selectors';
 
 @NgModule({
 
@@ -40,11 +40,11 @@ import {
   ],
 
   'declarations': [
-    NgAdvancedSearchboxComponent,
-    NgAdvancedSearchboxFilteringComponent,
-    NgAdvancedSearchboxAddedFiltersWrapper,
-    NgAdvancedSearchboxAddedFilter,
-    NgAdvancedSearchboxFilterSelectors
+    NgSearchboxComponent,
+    NgSearchboxFilteringComponent,
+    NgSearchboxAddedFiltersWrapper,
+    NgSearchboxAddedFilter,
+    NgSearchboxFilterSelectors
   ],
 
   'providers': [
@@ -64,7 +64,7 @@ import {
   ],
 
   'exports': [
-    NgAdvancedSearchboxComponent
+    NgSearchboxComponent
   ]
 
 })
