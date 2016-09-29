@@ -1,11 +1,20 @@
 'use strict';
 
 import {
-  Injectable
+  Injectable,
+  ElementRef
 } from '@angular/core';
 
 @Injectable()
 export class UtilsService {
+
+  constructor (
+    private window: Window
+  ) {
+
+    return this;
+
+  }
 
   public uuid (): string {
 
@@ -86,6 +95,36 @@ export class UtilsService {
       regex = new RegExp(expression, 'i');
 
     return regex.test(url);
+
+  }
+
+  public getCSSProperty (element: ElementRef, property: string): any {
+
+    let elem: HTMLElement = <HTMLElement>element.nativeElement;
+
+    return window
+      .getComputedStyle(elem, null)
+      .getPropertyValue(property);
+
+  }
+
+  public getHeightOf (element: ElementRef): number {
+
+    return parseInt(this.getCSSProperty(element, 'height')) +
+      parseInt(this.getCSSProperty(element, 'padding-bottom')) +
+      parseInt(this.getCSSProperty(element, 'padding-top')) +
+      parseInt(this.getCSSProperty(element, 'border-bottom')) +
+      parseInt(this.getCSSProperty(element, 'border-top'));
+
+  }
+
+  public getWidthOf (element: ElementRef): number {
+
+    return parseInt(this.getCSSProperty(element, 'width')) +
+      parseInt(this.getCSSProperty(element, 'padding-right')) +
+      parseInt(this.getCSSProperty(element, 'padding-left')) +
+      parseInt(this.getCSSProperty(element, 'border-left')) +
+      parseInt(this.getCSSProperty(element, 'border-right'));
 
   }
 

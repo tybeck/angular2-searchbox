@@ -1,11 +1,14 @@
 import { ComponentRef } from '@angular/core';
 import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter';
+import { NgSearchboxComponent } from '../components/ng-searchbox.component';
 export declare namespace Search {
-    const FilteringChange: string;
-    const FilteringServiceChange: string;
+    const InformationChange: string;
     interface BindingEventChange {
         name: string;
         data: any;
+    }
+    interface SearchBoxInformationExchange {
+        component?: NgSearchboxComponent;
     }
     interface Selector {
         name?: string;
@@ -16,6 +19,9 @@ export declare namespace Search {
     interface Operator {
         name?: string;
         selected?: boolean;
+    }
+    interface RemoveOptions {
+        update?: boolean;
     }
     interface Configuration {
         delay?: number;

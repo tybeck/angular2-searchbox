@@ -35,9 +35,7 @@ import {
   ModifiedSearch
 } from '../definitions/search';
 
-let validation: ValidationService = <ValidationService>new ValidationService(),
-
-  utils: UtilsService = <UtilsService>new UtilsService();
+let validation: ValidationService = <ValidationService>new ValidationService();
 
 @Injectable()
 export class FilteringService {
@@ -52,7 +50,8 @@ export class FilteringService {
 
   constructor (
     private eventSvc: EventHandling,
-    private ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper
+    private ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper,
+    private utils: UtilsService
   ) {
 
     this.event = new EventEmitter<ModifiedSearch.ModifiedFilter[]>();
@@ -85,7 +84,9 @@ export class FilteringService {
 
       <ModifiedSearch.ModifiedFilter>_.clone(filter);
 
-    modifiedFilter.uuid = utils.uuid();
+    modifiedFilter.uuid = this
+      .utils
+      .uuid();
 
     cmpRef
       .instance
@@ -115,7 +116,7 @@ export class FilteringService {
 
   }
 
-  public removeByComponent (filter: NgSearchboxAddedFilter): void {
+  public removeByComponent (filter: NgSearchboxAddedFilter, options?: Search.RemoveOptions): void {
 
     let self: FilteringService = <FilteringService>this;
 
@@ -130,7 +131,7 @@ export class FilteringService {
         if (addedFilter.component.instance === filter) {
 
           return self
-            .remove(addedFilter);
+            .remove(addedFilter, options);
 
         }
 
@@ -138,7 +139,7 @@ export class FilteringService {
 
   }
 
-  public remove (filter: AddedFilter): void {
+  public remove (filter: AddedFilter, options?: Search.RemoveOptions): void {
 
     let self: FilteringService = <FilteringService>this;
 
@@ -174,7 +175,13 @@ export class FilteringService {
 
     }
 
-    this.update();
+    if (!options || (options &&
+
+      typeof options.update === 'boolean' && options.update)) {
+
+        this.update();
+
+    }
 
   }
 

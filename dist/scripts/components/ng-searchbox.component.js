@@ -19,11 +19,12 @@ var placeholders_service_1 = require('../services/placeholders.service');
 var search_1 = require('../definitions/search');
 var ng_searchbox_added_filters_wrapper_component_1 = require('./ng-searchbox-added-filters-wrapper.component');
 var memory_service_1 = require('../services/memory.service');
-var Utils = new utils_service_1.UtilsService();
 var NgSearchboxComponent = (function () {
-    function NgSearchboxComponent(memory, changeDetectorRef, window) {
+    function NgSearchboxComponent(element, memory, changeDetectorRef, utils, window) {
+        this.element = element;
         this.memory = memory;
         this.changeDetectorRef = changeDetectorRef;
+        this.utils = utils;
         this.window = window;
         this.searchParams = null;
         this.ngSearchBoxFiltering = null;
@@ -43,7 +44,7 @@ var NgSearchboxComponent = (function () {
         this.query = '';
         this.previousQuery = null;
         this.hasQuery = false;
-        this.sid = Utils.uuid();
+        this.sid = '';
         this.timer = null;
         this.defaultParams = {
             'query': '',
@@ -53,6 +54,9 @@ var NgSearchboxComponent = (function () {
         return this;
     }
     NgSearchboxComponent.prototype.ngOnInit = function () {
+        this.sid = this
+            .utils
+            .uuid();
         this
             .configure();
     };
@@ -61,7 +65,7 @@ var NgSearchboxComponent = (function () {
             .ngSearchboxAddedFiltersWrapper;
         this.Api = new api_service_1.API();
         this.Event = new event_handling_service_1.EventHandling(this.Api);
-        this.Filtering = new filtering_service_1.FilteringService(this.Event, addedFiltersWrapper);
+        this.Filtering = new filtering_service_1.FilteringService(this.Event, addedFiltersWrapper, this.utils);
         this.Placeholding = new placeholders_service_1.PlaceholdersService(this);
         this
             .Filtering
@@ -93,9 +97,11 @@ var NgSearchboxComponent = (function () {
                     .onChange(self.searchParams);
             }
         });
+        var searchBoxInformationExchange = {
+            'component': this
+        };
         this
-            .emit(search_1.Search.FilteringChange, this.ngSearchBoxFiltering)
-            .emit(search_1.Search.FilteringServiceChange, this.Filtering);
+            .emit(search_1.Search.InformationChange, searchBoxInformationExchange);
         this
             .register();
         this
@@ -257,10 +263,11 @@ var NgSearchboxComponent = (function () {
             'template': ng_templates_1.NgSearchboxTemplate,
             'styles': ng_styles_1.NgSearchboxStyle,
             'providers': [
-                memory_service_1.MemoryService
+                memory_service_1.MemoryService,
+                utils_service_1.UtilsService
             ]
         }), 
-        __metadata('design:paramtypes', [memory_service_1.MemoryService, core_1.ChangeDetectorRef, Window])
+        __metadata('design:paramtypes', [core_1.ElementRef, memory_service_1.MemoryService, core_1.ChangeDetectorRef, utils_service_1.UtilsService, Window])
     ], NgSearchboxComponent);
     return NgSearchboxComponent;
 }());

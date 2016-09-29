@@ -16,12 +16,19 @@ import {
 } from '../ng.templates';
 
 import {
+  NgSearchboxAddedFiltersWrapperStyle
+} from '../ng.styles';
+
+import {
+  NgSearchboxComponent
+} from './ng-searchbox.component';
+
+import {
   NgSearchboxAddedFilter
 } from './ng-searchbox-added-filter';
 
 import {
-  Search,
-  ModifiedSearch
+  Search
 } from '../definitions/search';
 
 import {
@@ -36,7 +43,9 @@ import {
 
   'entryComponents': [
     NgSearchboxAddedFilter
-  ]
+  ],
+
+  'styles': NgSearchboxAddedFiltersWrapperStyle
 
 })
 
@@ -53,6 +62,8 @@ export class NgSearchboxAddedFiltersWrapper implements AfterViewInit {
   @Input('observer') observer: EventEmitter<Search.BindingEventChange> = null;
 
   public Filtering: FilteringService = null;
+
+  public searchbox: NgSearchboxComponent = null;
 
   constructor (
     public componentFactoryResolver: ComponentFactoryResolver,
@@ -73,10 +84,19 @@ export class NgSearchboxAddedFiltersWrapper implements AfterViewInit {
 
         switch (change.name) {
 
-          case Search.FilteringServiceChange:
+          case Search.InformationChange:
 
-            self
-              .Filtering = <FilteringService>change.data;
+            let data: Search.SearchBoxInformationExchange = <Search.SearchBoxInformationExchange>change.data;
+
+            self.searchbox = data.component;
+
+            if (self.searchbox) {
+
+              self.Filtering = self
+                .searchbox
+                .Filtering;
+
+            }
 
           break;
 

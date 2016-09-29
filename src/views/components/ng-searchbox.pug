@@ -34,6 +34,8 @@ div.ng-searchbox
         (click)="handleSearch();"
       )
   ng-searchbox-added-filters-wrapper(
+    [ngClass]="{ 'active': (Filtering && Filtering.hasFilters) }",
     [observer]="onChange",
-    #ngSearchboxAddedFiltersWrapper=""
+    #ngSearchboxAddedFiltersWrapper="",
+    class="ng-clearfix"
   )

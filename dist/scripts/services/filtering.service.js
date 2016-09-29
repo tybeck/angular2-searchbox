@@ -15,11 +15,12 @@ var ng_searchbox_added_filter_1 = require('../components/ng-searchbox-added-filt
 var event_handling_service_1 = require('../services/event-handling.service');
 var validation_service_1 = require('../services/validation.service');
 var utils_service_1 = require('../services/utils.service');
-var validation = new validation_service_1.ValidationService(), utils = new utils_service_1.UtilsService();
+var validation = new validation_service_1.ValidationService();
 var FilteringService = (function () {
-    function FilteringService(eventSvc, ngSearchboxAddedFilters) {
+    function FilteringService(eventSvc, ngSearchboxAddedFilters, utils) {
         this.eventSvc = eventSvc;
         this.ngSearchboxAddedFilters = ngSearchboxAddedFilters;
+        this.utils = utils;
         this.addedFilters = [];
         this.hasFilters = false;
         this.event = null;
@@ -39,7 +40,9 @@ var FilteringService = (function () {
             .ngSearchboxAddedFiltersViewContainer
             .createComponent(factory);
         var modifiedFilter = _.clone(filter);
-        modifiedFilter.uuid = utils.uuid();
+        modifiedFilter.uuid = this
+            .utils
+            .uuid();
         cmpRef
             .instance
             .set(this, this.eventSvc, modifiedFilter);
@@ -54,7 +57,7 @@ var FilteringService = (function () {
             this.hasFilters = true;
         }
     };
-    FilteringService.prototype.removeByComponent = function (filter) {
+    FilteringService.prototype.removeByComponent = function (filter, options) {
         var self = this;
         this
             .addedFilters
@@ -63,11 +66,11 @@ var FilteringService = (function () {
             .forEach(function (addedFilter) {
             if (addedFilter.component.instance === filter) {
                 return self
-                    .remove(addedFilter);
+                    .remove(addedFilter, options);
             }
         });
     };
-    FilteringService.prototype.remove = function (filter) {
+    FilteringService.prototype.remove = function (filter, options) {
         var self = this;
         this
             .addedFilters
@@ -87,7 +90,10 @@ var FilteringService = (function () {
             !this.addedFilters.length) {
             this.hasFilters = false;
         }
-        this.update();
+        if (!options || (options &&
+            typeof options.update === 'boolean' && options.update)) {
+            this.update();
+        }
     };
     FilteringService.prototype.removeAll = function () {
         var self = this;
@@ -146,7 +152,7 @@ var FilteringService = (function () {
     };
     FilteringService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [event_handling_service_1.EventHandling, ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper])
+        __metadata('design:paramtypes', [event_handling_service_1.EventHandling, ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper, utils_service_1.UtilsService])
     ], FilteringService);
     return FilteringService;
 }());

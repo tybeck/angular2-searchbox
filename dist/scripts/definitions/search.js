@@ -1,8 +1,7 @@
 'use strict';
 var Search;
 (function (Search) {
-    Search.FilteringChange = 'filteringChange';
-    Search.FilteringServiceChange = 'filteringServiceChange';
+    Search.InformationChange = 'informationChange';
 })(Search = exports.Search || (exports.Search = {}));
 exports.SELECTORS = [
     {

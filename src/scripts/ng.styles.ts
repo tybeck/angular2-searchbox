@@ -1,9 +1,111 @@
 'use strict';
 
+export const NgSearchboxAddedFilterStyle: string[] = [`:host > div.ng-searchbox-added-filter {
+  display: block;
+  float: left;
+  transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents {
+  background: #FFF;
+  padding: 5px 6px 5px 6px;
+  border-radius: 6px;
+  margin-right: 10px;
+  margin-top: 8px;
+  float: left;
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents input {
+  outline: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid #D4D1D1;
+  font-size: 14px;
+  padding-left: 5px;
+  margin-right: 3px;
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents span.filter-name {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents span.selector-type {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-top: 0px;
+  background: #CAE5FF;
+  margin-left: 9px;
+  padding: 4px;
+  opacity: 0.6;
+  border-radius: 4px;
+  margin-right: 7px;
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents span.filter-value {
+  display: inline-block;
+  padding-bottom: 2px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.82);
+}
+:host > div.ng-searchbox-added-filter > div.ng-searchbox-added-filter-contents i.fa-times {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: top;
+  font-size: 18px;
+  margin-right: 5px;
+}
+`];
+export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
+  padding: 0 0 8px 7px;
+  background: #E1F0FD;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+  display: none;
+}
+:host.active {
+  display: block;
+}
+:host div.ng-searchbox-added-filters {
+  display: none;
+}
+`];
+export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbox-filter-selectors {
+  position: absolute;
+  z-index: 3;
+}
+:host div.ng-searchbox-filter-selectors ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 0 0;
+  display: block;
+  border-left: 1px solid #A9A9A9;
+  border-right: 1px solid #A9A9A9;
+  border-bottom: 1px solid #A9A9A9;
+  max-height: 130px;
+  overflow-y: scroll;
+}
+`];
+export const GlobalStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
+}
+`];
 export const NgSearchboxFilteringStyle: string[] = [`:host {
   display: block;
 }
-:host > div {
+:host span.filtering-selection {
   border-right: 1px solid rgba(4, 4, 4, 0.3);
   margin-top: 0;
   cursor: pointer;
@@ -29,13 +131,67 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
   position: absolute;
   z-index: 2;
 }
+:host span.filtering-selection.active {
+  background: #b5dcff;
+  background: -moz-linear-gradient(top, #b5dcff 0%, #cee8ff 100%);
+  background: -webkit-linear-gradient(top, #b5dcff 0%, #cee8ff 100%);
+  background: linear-gradient(to bottom, #b5dcff 0%, #cee8ff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5dcff', endColorstr='#cee8ff',GradientType=0 );
+}
 :host ul {
   position: absolute;
+  z-index: 2;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  left: 0;
+  top: 0;
+}
+:host ul li {
+  font-size: 14px;
+  margin-right: 8px;
+  padding: 5px 10px;
+  border-bottom: 2px solid #FFF;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background 0.25s ease-in-out;
+  -moz-transition: background 0.25s ease-in-out;
+  -webkit-transition: background 0.25s ease-in-out;
+}
+:host ul li:last-child {
+  border-bottom: none;
+}
+:host ul li.root-filter {
+  background: #CEE8FF;
+}
+:host ul li.child-filter {
+  background: #FFDFDF;
 }
 `];
-export const NgSearchboxStyle: string[] = [`:host {
+export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
+}
+
+:host {
   border: 1px solid rgba(4, 4, 4, 0.3);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  position: relative;
   border-radius: 4px;
   display: block;
   background: #FFF;

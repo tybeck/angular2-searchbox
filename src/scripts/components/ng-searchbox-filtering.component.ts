@@ -5,7 +5,11 @@ import {
   Input,
   EventEmitter,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+  NgZone,
+  HostListener
 } from '@angular/core';
 
 import {
@@ -17,6 +21,10 @@ import {
 } from '../ng.styles';
 
 import {
+  NgSearchboxComponent
+} from '../components/ng-searchbox.component';
+
+import {
   Search,
   ModifiedSearch
 } from '../definitions/search';
@@ -25,17 +33,27 @@ import {
   FilteringService
 } from '../services/filtering.service';
 
+import {
+  UtilsService
+} from '../services/utils.service';
+
 @Component({
 
   'selector': 'ng-searchbox-filtering',
 
   'template': NgSearchboxFilteringTemplate,
 
-  'styles': NgSearchboxFilteringStyle
+  'styles': NgSearchboxFilteringStyle,
+
+  'providers': [
+    UtilsService
+  ]
 
 })
 
 export class NgSearchboxFilteringComponent implements AfterViewInit {
+
+  @ViewChild('ngSearchboxFilteringList') ngSearchboxFilteringList: ElementRef;
 
   @Input('observer') observer: EventEmitter<Search.BindingEventChange> = null;
 
@@ -45,17 +63,88 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   public active: boolean = false;
 
+  public searchbox: NgSearchboxComponent = null;
+
   constructor (
-    private changeDetectionRef: ChangeDetectorRef
+    private changeDetectionRef: ChangeDetectorRef,
+    private utils: UtilsService,
+    private zone: NgZone
   ) {
 
     return this;
 
   }
 
-  public toggleFilters () {
+  @HostListener('window:resize', ['$event'])
+  handleResize (): void {
 
-    this.active = !this.active;
+    if (this.active) {
+
+      this.setPosition();
+
+    }
+
+  }
+
+  public toggleFilters (active?: boolean) {
+
+    let self: NgSearchboxFilteringComponent = <NgSearchboxFilteringComponent>this;
+
+    if (typeof active !== 'undefined') {
+
+      this.active = active;
+
+    } else {
+
+      this.active = !this.active;
+
+    }
+
+    this
+      .zone
+      .run((): void => {
+
+        if (self.active) {
+
+          self.setPosition();
+
+        }
+
+    });
+
+  }
+
+  public setPosition (): void {
+
+    let self: NgSearchboxFilteringComponent = <NgSearchboxFilteringComponent>this;
+
+    let h: number = self
+      .utils
+      .getHeightOf(
+        self
+          .searchbox
+          .element
+      ),
+
+      w: number = self
+        .utils
+        .getWidthOf(
+          self
+            .searchbox
+            .element
+        );
+
+    self
+      .ngSearchboxFilteringList
+      .nativeElement
+      .style
+      .top = h + 'px';
+
+    self
+      .ngSearchboxFilteringList
+      .nativeElement
+      .style
+      .width = w + 'px';
 
   }
 
@@ -69,17 +158,23 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
         switch (change.name) {
 
-          case Search.FilteringChange:
+          case Search.InformationChange:
 
-            self
-              .availableFilters = <Search.AvailableFilter[]>change.data;
+            let data: Search.SearchBoxInformationExchange = <Search.SearchBoxInformationExchange>change.data;
 
-          break;
+            self.searchbox = data.component;
 
-          case Search.FilteringServiceChange:
+            if (self.searchbox) {
 
-            self
-              .Filtering = <FilteringService>change.data;
+              self.availableFilters = self
+                .searchbox
+                .ngSearchBoxFiltering;
+
+              self.Filtering = self
+                .searchbox
+                .Filtering;
+
+            }
 
           break;
 
@@ -95,7 +190,7 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   public addFilterAndClose (filter: ModifiedSearch.ModifiedFilter): void {
 
-    this.active = false;
+    this.toggleFilters(false);
 
     this
       .Filtering

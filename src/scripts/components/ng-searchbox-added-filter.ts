@@ -23,6 +23,10 @@ import {
 } from '../ng.templates';
 
 import {
+  NgSearchboxAddedFilterStyle
+} from '../ng.styles';
+
+import {
   ModifiedSearch
 } from '../definitions/search';
 
@@ -31,6 +35,8 @@ import {
   'selector': 'ng-searchbox-added-filter',
 
   'template': NgSearchboxAddedFilterTemplate,
+
+  'styles': NgSearchboxAddedFilterStyle,
 
   'providers': [
     UtilsService
@@ -165,9 +171,13 @@ export class NgSearchboxAddedFilter {
         .filter
         .editing = true;
 
-      this
-        .window
-        .addEventListener('click', this.proxiedFunction);
+      setTimeout((): void => {
+
+        this
+          .window
+          .addEventListener('click', this.proxiedFunction);
+
+      }, 25);
 
       this
         .setFocus();
@@ -182,7 +192,7 @@ export class NgSearchboxAddedFilter {
 
     let self: NgSearchboxAddedFilter = this;
 
-    setTimeout(function () {
+    setTimeout((): void => {
 
       let input = self
         .ngSearchboxAddedFilter
@@ -208,7 +218,11 @@ export class NgSearchboxAddedFilter {
 
       this
         .Filtering
-        .removeByComponent(this);
+        .removeByComponent(this, {
+
+          'update': false
+
+        });
 
     } else {
 

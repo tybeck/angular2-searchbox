@@ -10,7 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var UtilsService = (function () {
-    function UtilsService() {
+    function UtilsService(window) {
+        this.window = window;
+        return this;
     }
     UtilsService.prototype.uuid = function () {
         var d = Date.now();
@@ -55,9 +57,29 @@ var UtilsService = (function () {
             '-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$', regex = new RegExp(expression, 'i');
         return regex.test(url);
     };
+    UtilsService.prototype.getCSSProperty = function (element, property) {
+        var elem = element.nativeElement;
+        return window
+            .getComputedStyle(elem, null)
+            .getPropertyValue(property);
+    };
+    UtilsService.prototype.getHeightOf = function (element) {
+        return parseInt(this.getCSSProperty(element, 'height')) +
+            parseInt(this.getCSSProperty(element, 'padding-bottom')) +
+            parseInt(this.getCSSProperty(element, 'padding-top')) +
+            parseInt(this.getCSSProperty(element, 'border-bottom')) +
+            parseInt(this.getCSSProperty(element, 'border-top'));
+    };
+    UtilsService.prototype.getWidthOf = function (element) {
+        return parseInt(this.getCSSProperty(element, 'width')) +
+            parseInt(this.getCSSProperty(element, 'padding-right')) +
+            parseInt(this.getCSSProperty(element, 'padding-left')) +
+            parseInt(this.getCSSProperty(element, 'border-left')) +
+            parseInt(this.getCSSProperty(element, 'border-right'));
+    };
     UtilsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [Window])
     ], UtilsService);
     return UtilsService;
 }());

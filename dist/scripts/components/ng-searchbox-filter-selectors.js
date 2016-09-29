@@ -15,11 +15,11 @@ var _ = require('lodash');
 var core_1 = require('@angular/core');
 var ng_searchbox_added_filter_1 = require('../components/ng-searchbox-added-filter');
 var ng_templates_1 = require('../ng.templates');
+var ng_styles_1 = require('../ng.styles');
 var search_1 = require('../definitions/search');
 var NgSearchboxFilterSelectors = (function () {
-    function NgSearchboxFilterSelectors(ngAddedFilter, zone) {
+    function NgSearchboxFilterSelectors(ngAddedFilter) {
         this.ngAddedFilter = ngAddedFilter;
-        this.zone = zone;
         this.filter = null;
         this.selectors = _.clone(search_1.SELECTORS);
         return this;
@@ -97,10 +97,11 @@ var NgSearchboxFilterSelectors = (function () {
     NgSearchboxFilterSelectors = __decorate([
         core_1.Component({
             'selector': 'ng-searchbox-filter-selectors',
-            'template': ng_templates_1.NgSearchboxFilterSelectorsTemplate
+            'template': ng_templates_1.NgSearchboxFilterSelectorsTemplate,
+            'styles': ng_styles_1.NgSearchboxFilterSelectorsStyle
         }),
         __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_1.NgSearchboxAddedFilter; }))), 
-        __metadata('design:paramtypes', [ng_searchbox_added_filter_1.NgSearchboxAddedFilter, core_1.NgZone])
+        __metadata('design:paramtypes', [ng_searchbox_added_filter_1.NgSearchboxAddedFilter])
     ], NgSearchboxFilterSelectors);
     return NgSearchboxFilterSelectors;
 }());

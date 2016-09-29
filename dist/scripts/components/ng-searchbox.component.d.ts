@@ -1,4 +1,5 @@
-import { OnInit, OnChanges, AfterViewInit, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { OnInit, OnChanges, AfterViewInit, EventEmitter, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { UtilsService } from '../services/utils.service';
 import { EventHandling } from '../services/event-handling.service';
 import { API } from '../services/api.service';
 import { FilteringService } from '../services/filtering.service';
@@ -7,8 +8,10 @@ import { Search } from '../definitions/search';
 import { NgSearchboxAddedFiltersWrapper } from './ng-searchbox-added-filters-wrapper.component';
 import { MemoryService } from '../services/memory.service';
 export declare class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
+    element: ElementRef;
     private memory;
     private changeDetectorRef;
+    private utils;
     private window;
     ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
     searchParams: Search.Parameters;
@@ -32,7 +35,7 @@ export declare class NgSearchboxComponent implements OnInit, OnChanges, AfterVie
     sid: string;
     timer: any;
     defaultParams: Search.Parameters;
-    constructor(memory: MemoryService, changeDetectorRef: ChangeDetectorRef, window: Window);
+    constructor(element: ElementRef, memory: MemoryService, changeDetectorRef: ChangeDetectorRef, utils: UtilsService, window: Window);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;

@@ -8,17 +8,29 @@ import {
   NgSearchboxAddedFilter
 } from '../components/ng-searchbox-added-filter';
 
+import {
+  NgSearchboxComponent
+} from '../components/ng-searchbox.component';
+
+import {
+  FilteringService
+} from '../services/filtering.service';
+
 export namespace Search {
 
-  export const FilteringChange: string = 'filteringChange';
-
-  export const FilteringServiceChange: string = 'filteringServiceChange';
+  export const InformationChange: string = 'informationChange';
 
   export interface BindingEventChange {
 
     name: string;
 
     data: any;
+
+  }
+
+  export interface SearchBoxInformationExchange {
+
+    component?: NgSearchboxComponent;
 
   }
 
@@ -39,6 +51,12 @@ export namespace Search {
     name?: string;
 
     selected?: boolean;
+
+  }
+
+  export interface RemoveOptions {
+
+    update?: boolean;
 
   }
 

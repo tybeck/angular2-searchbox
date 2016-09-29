@@ -5,7 +5,7 @@ div.ng-searchbox-added-filter(
     (click)="openFilter();"
   )
     span(
-      class="ng-searchbox-filter-name",
+      class="filter-name",
       [innerText]="filter.displayName + ':'"
     )
     template(
@@ -16,26 +16,26 @@ div.ng-searchbox-added-filter(
         [innerText]="filter.selector.name"
       )
     template(
-      [ngIf]="filter && filter.value"
+      [ngIf]="filter && filter.value && !filter.editing"
     )
       span(
         [innerText]="filter.value"
         class="filter-value"
       )
-  template(
-    [ngIf]="filter && filter.editing"
-  )
-    input(
-      type="text",
-      [(ngModel)]="v",
-      (ngModelChange)="valueChange($event);",
-      (keydown)="onKeyDown($event);",
-      (keyup)="onKeyUp($event);"
+    template(
+      [ngIf]="filter && filter.editing"
     )
-  ng-searchbox-filter-selectors(
-    [filter]="filter"
-  )
-  i(
-    class="fa fa-times",
-    (click)="destroy();"
-  )
+      input(
+        type="text",
+        [(ngModel)]="v",
+        (ngModelChange)="valueChange($event);",
+        (keydown)="onKeyDown($event);",
+        (keyup)="onKeyUp($event);"
+      )
+    i(
+      class="fa fa-times",
+      (click)="destroy();"
+    )
+    ng-searchbox-filter-selectors(
+      [filter]="filter"
+    )

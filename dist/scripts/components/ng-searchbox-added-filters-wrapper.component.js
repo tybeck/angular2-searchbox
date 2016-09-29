@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng_templates_1 = require('../ng.templates');
+var ng_styles_1 = require('../ng.styles');
 var ng_searchbox_added_filter_1 = require('./ng-searchbox-added-filter');
 var search_1 = require('../definitions/search');
 var NgSearchboxAddedFiltersWrapper = (function () {
@@ -18,6 +19,7 @@ var NgSearchboxAddedFiltersWrapper = (function () {
         this.changeDetectionRef = changeDetectionRef;
         this.observer = null;
         this.Filtering = null;
+        this.searchbox = null;
         return this;
     }
     NgSearchboxAddedFiltersWrapper.prototype.ngAfterViewInit = function () {
@@ -26,9 +28,14 @@ var NgSearchboxAddedFiltersWrapper = (function () {
             .observer
             .subscribe(function (change) {
             switch (change.name) {
-                case search_1.Search.FilteringServiceChange:
-                    self
-                        .Filtering = change.data;
+                case search_1.Search.InformationChange:
+                    var data = change.data;
+                    self.searchbox = data.component;
+                    if (self.searchbox) {
+                        self.Filtering = self
+                            .searchbox
+                            .Filtering;
+                    }
                     break;
             }
             self
@@ -54,7 +61,8 @@ var NgSearchboxAddedFiltersWrapper = (function () {
             'template': ng_templates_1.NgSearchboxAddedFiltersWrapperTemplate,
             'entryComponents': [
                 ng_searchbox_added_filter_1.NgSearchboxAddedFilter
-            ]
+            ],
+            'styles': ng_styles_1.NgSearchboxAddedFiltersWrapperStyle
         }), 
         __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ChangeDetectorRef])
     ], NgSearchboxAddedFiltersWrapper);

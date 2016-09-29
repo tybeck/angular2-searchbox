@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var utils_service_1 = require('../services/utils.service');
 var ng_templates_1 = require('../ng.templates');
+var ng_styles_1 = require('../ng.styles');
 var NgSearchboxAddedFilter = (function () {
     function NgSearchboxAddedFilter(utils, window) {
         this.utils = utils;
@@ -83,13 +84,16 @@ var NgSearchboxAddedFilter = (function () {
         }
     };
     NgSearchboxAddedFilter.prototype.openFilter = function () {
+        var _this = this;
         if (!this.filter.editing) {
             this
                 .filter
                 .editing = true;
-            this
-                .window
-                .addEventListener('click', this.proxiedFunction);
+            setTimeout(function () {
+                _this
+                    .window
+                    .addEventListener('click', _this.proxiedFunction);
+            }, 25);
             this
                 .setFocus();
         }
@@ -113,7 +117,9 @@ var NgSearchboxAddedFilter = (function () {
         if (!this.filter.value) {
             this
                 .Filtering
-                .removeByComponent(this);
+                .removeByComponent(this, {
+                'update': false
+            });
         }
         else {
             this
@@ -178,6 +184,7 @@ var NgSearchboxAddedFilter = (function () {
         core_1.Component({
             'selector': 'ng-searchbox-added-filter',
             'template': ng_templates_1.NgSearchboxAddedFilterTemplate,
+            'styles': ng_styles_1.NgSearchboxAddedFilterStyle,
             'providers': [
                 utils_service_1.UtilsService
             ]

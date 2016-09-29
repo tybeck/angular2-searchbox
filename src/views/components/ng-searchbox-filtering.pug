@@ -1,12 +1,13 @@
-div.ng-filtering.clearfix(
-  (click)="toggleFilters();"
-)
+div.ng-filtering.ng-clearfix
   span(
-    [ngClass]="{ 'active': active }"
+    class="filtering-selection",
+    [ngClass]="{ 'active': active }",
+    (click)="toggleFilters();"
   )
     i.fa.fa-filter
   ul(
-    [hidden]="!active"
+    [hidden]="!active",
+    #ngSearchboxFilteringList=""
   )
     li(
       *ngFor="let filter of availableFilters",

@@ -7,9 +7,7 @@ import {
   Input,
   Inject,
   forwardRef,
-  ChangeDetectorRef,
   AfterViewInit,
-  NgZone
 } from '@angular/core';
 
 import {
@@ -21,6 +19,10 @@ import {
 } from '../ng.templates';
 
 import {
+  NgSearchboxFilterSelectorsStyle
+} from '../ng.styles';
+
+import {
   SELECTORS,
   Search,
   ModifiedSearch
@@ -30,7 +32,9 @@ import {
 
   'selector': 'ng-searchbox-filter-selectors',
 
-  'template': NgSearchboxFilterSelectorsTemplate
+  'template': NgSearchboxFilterSelectorsTemplate,
+
+  'styles': NgSearchboxFilterSelectorsStyle
 
 })
 
@@ -41,8 +45,7 @@ export class NgSearchboxFilterSelectors implements AfterViewInit {
   public selectors: Search.Selector[] = _.clone(SELECTORS);
 
   constructor (
-    @Inject(forwardRef(() => NgSearchboxAddedFilter)) private ngAddedFilter: NgSearchboxAddedFilter,
-    private zone: NgZone
+    @Inject(forwardRef(() => NgSearchboxAddedFilter)) private ngAddedFilter: NgSearchboxAddedFilter
   ) {
 
     return this;

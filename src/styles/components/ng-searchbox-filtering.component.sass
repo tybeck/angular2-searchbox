@@ -2,7 +2,7 @@
 
   display: block
 
-  > div
+  span.filtering-selection
 
     border-right: 1px solid rgba(4, 4, 4, 0.3)
     margin-top: 0
@@ -28,7 +28,52 @@
     -webkit-transition: opacity .25s ease-in-out
     position: absolute
     z-index: 2
+    
+    &.active
+      background: #b5dcff
+      background: -moz-linear-gradient(top, #b5dcff 0%, #cee8ff 100%)
+      background: -webkit-linear-gradient(top, #b5dcff 0%, #cee8ff 100%)
+      background: linear-gradient(to bottom, #b5dcff 0%, #cee8ff 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5dcff', endColorstr='#cee8ff',GradientType=0 )
 
   ul
 
     position: absolute
+    z-index: 2
+    list-style-type: none
+    padding: 0
+    margin: 0
+    overflow-y: scroll
+    border-bottom-right-radius: 8px
+    border-bottom-left-radius: 8px
+    left: 0
+    top: 0
+    
+    li
+
+      font-size: 14px
+      margin-right: 8px
+      padding: 5px 10px
+      border-bottom: 2px solid #FFF
+      cursor: pointer
+      -moz-user-select: none
+      -khtml-user-select: none
+      -webkit-user-select: none
+      -ms-user-select: none
+      user-select: none
+      transition: background .25s ease-in-out
+      -moz-transition: background .25s ease-in-out
+      -webkit-transition: background .25s ease-in-out
+
+      &:last-child
+
+        border-bottom: none
+
+      &.root-filter
+
+        background: #CEE8FF
+
+      &.child-filter
+
+        background: #FFDFDF
+

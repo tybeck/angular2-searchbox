@@ -9,7 +9,8 @@ import {
   AfterViewInit,
   EventEmitter,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ElementRef
 } from '@angular/core';
 
 import {
@@ -53,8 +54,6 @@ import {
   MemoryService
 } from '../services/memory.service';
 
-let Utils: UtilsService = new UtilsService();
-
 @Component({
 
   'selector': 'ng-searchbox',
@@ -64,7 +63,8 @@ let Utils: UtilsService = new UtilsService();
   'styles': NgSearchboxStyle,
 
   'providers': [
-    MemoryService
+    MemoryService,
+    UtilsService
   ]
 
 })
@@ -73,25 +73,25 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild('ngSearchboxAddedFiltersWrapper')
 
-  ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
+  public ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
 
   @Input('searchParams') searchParams: Search.Parameters = null;
 
-  @Input('ngSearchBoxFiltering') ngSearchBoxFiltering: Search.AvailableFilter[] = null;
+  @Input('ngSearchBoxFiltering') public ngSearchBoxFiltering: Search.AvailableFilter[] = null;
 
-  @Input('ngSearchBoxConfig') ngSearchBoxConfig: any = null;
+  @Input('ngSearchBoxConfig') public ngSearchBoxConfig: any = null;
 
-  @Input('ngSearchBoxAutoComplete') ngSearchBoxAutoComplete: any = null;
+  @Input('ngSearchBoxAutoComplete') public ngSearchBoxAutoComplete: any = null;
 
-  @Input('ngSearchBoxCacheFilter') ngSearchBoxCacheFilter: boolean = false;
+  @Input('ngSearchBoxCacheFilter') public ngSearchBoxCacheFilter: boolean = false;
 
-  @Input('ngSearchBoxEnableFilteringOperators') ngSearchBoxEnableFilteringOperators: any = null;
+  @Input('ngSearchBoxEnableFilteringOperators') public ngSearchBoxEnableFilteringOperators: any = null;
 
-  @Input('ngSearchBoxFilterSelectors') ngSearchBoxFilterSelectors: any = null;
+  @Input('ngSearchBoxFilterSelectors') public ngSearchBoxFilterSelectors: any = null;
 
-  @Input('ngSearchBoxFilterOperators') ngSearchBoxFilterOperators: any = null;
+  @Input('ngSearchBoxFilterOperators') public ngSearchBoxFilterOperators: any = null;
 
-  @Input('placeholder') placeholder: string = '';
+  @Input('placeholder') public placeholder: string = '';
 
   @Output('onRegisterApi') onRegisterApi: EventEmitter<API> = new EventEmitter<API>();
 
@@ -111,7 +111,7 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
   public hasQuery: boolean = <boolean>false;
 
-  public sid: string = <string>Utils.uuid();
+  public sid: string = <string>'';
 
   public timer: any = null;
 
@@ -124,8 +124,10 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
   };
 
   constructor (
+    public element: ElementRef,
     private memory: MemoryService,
     private changeDetectorRef: ChangeDetectorRef,
+    private utils: UtilsService,
     private window: Window
   ) {
 
@@ -136,6 +138,10 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit () {
+
+    this.sid = this
+      .utils
+      .uuid();
 
     this
       .configure();
@@ -155,7 +161,8 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.Filtering = new FilteringService(
       this.Event,
-      addedFiltersWrapper
+      addedFiltersWrapper,
+      this.utils
     );
 
     this.Placeholding = new PlaceholdersService(
@@ -205,19 +212,18 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
       });
 
+    let searchBoxInformationExchange: Search.SearchBoxInformationExchange = {
+
+      'component': this
+
+    };
+
     this
       .emit(
 
-        Search.FilteringChange,
+        Search.InformationChange,
 
-        this.ngSearchBoxFiltering
-
-      )
-      .emit(
-
-        Search.FilteringServiceChange,
-
-        this.Filtering
+        searchBoxInformationExchange
 
       );
 
