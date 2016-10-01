@@ -31,7 +31,7 @@ var NgSearchboxComponent = (function () {
         this.ngSearchBoxConfig = null;
         this.ngSearchBoxAutoComplete = null;
         this.ngSearchBoxCacheFilter = false;
-        this.ngSearchBoxEnableFilteringOperators = null;
+        this.ngSearchBoxEnableFilterOperators = false;
         this.ngSearchBoxFilterSelectors = null;
         this.ngSearchBoxFilterOperators = null;
         this.placeholder = '';
@@ -57,17 +57,21 @@ var NgSearchboxComponent = (function () {
         this.sid = this
             .utils
             .uuid();
+        if (this.ngSearchBoxEnableFilterOperators) {
+            this
+                .defaultParams
+                .operators = [];
+        }
         this
             .configure();
     };
     NgSearchboxComponent.prototype.ngAfterViewInit = function () {
-        var self = this, addedFiltersWrapper = this
-            .ngSearchboxAddedFiltersWrapper;
+        var self = this;
         this.Api = new api_service_1.API();
-        this.Event = new event_handling_service_1.EventHandling(this.Api);
-        this.Filtering = new filtering_service_1.FilteringService(this.Event, addedFiltersWrapper, this.utils);
-        this.Placeholding = new placeholders_service_1.PlaceholdersService(this);
-        this
+        this.Event = new event_handling_service_1.EventHandling(self.Api);
+        this.Filtering = new filtering_service_1.FilteringService(self);
+        this.Placeholding = new placeholders_service_1.PlaceholdersService(self);
+        self
             .Filtering
             .getPublisher()
             .subscribe(function (filters) {
@@ -98,13 +102,13 @@ var NgSearchboxComponent = (function () {
             }
         });
         var searchBoxInformationExchange = {
-            'component': this
+            'component': self
         };
-        this
+        self
             .emit(search_1.Search.InformationChange, searchBoxInformationExchange);
-        this
+        self
             .register();
-        this
+        self
             .changeDetectorRef
             .detectChanges();
     };
@@ -238,9 +242,9 @@ var NgSearchboxComponent = (function () {
         __metadata('design:type', Boolean)
     ], NgSearchboxComponent.prototype, "ngSearchBoxCacheFilter");
     __decorate([
-        core_1.Input('ngSearchBoxEnableFilteringOperators'), 
-        __metadata('design:type', Object)
-    ], NgSearchboxComponent.prototype, "ngSearchBoxEnableFilteringOperators");
+        core_1.Input('ngSearchBoxEnableFilterOperators'), 
+        __metadata('design:type', Boolean)
+    ], NgSearchboxComponent.prototype, "ngSearchBoxEnableFilterOperators");
     __decorate([
         core_1.Input('ngSearchBoxFilterSelectors'), 
         __metadata('design:type', Object)

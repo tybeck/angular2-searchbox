@@ -19,6 +19,7 @@ var NgSearchboxAddedFilter = (function () {
         this.Filtering = null;
         this.Event = null;
         this.filter = null;
+        this.searchbox = null;
         this.uuid = null;
         this.v = '';
         this.pv = '';
@@ -27,10 +28,12 @@ var NgSearchboxAddedFilter = (function () {
             .uuid();
         return this;
     }
-    NgSearchboxAddedFilter.prototype.set = function (filteringSvc, eventSvc, filter) {
+    NgSearchboxAddedFilter.prototype.set = function (filteringSvc, searchbox, filter) {
         this.Filtering = filteringSvc;
-        this.Event = eventSvc;
+        this.Event = searchbox
+            .Event;
         this.filter = filter;
+        this.searchbox = searchbox;
         this
             .toggleActivation();
         return this;

@@ -1,5 +1,5 @@
 import { AfterViewInit } from '@angular/core';
-import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter';
+import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter.component';
 import { Search, ModifiedSearch } from '../definitions/search';
 export declare class NgSearchboxFilterSelectors implements AfterViewInit {
     private ngAddedFilter;

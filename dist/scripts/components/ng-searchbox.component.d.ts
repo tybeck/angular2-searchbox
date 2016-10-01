@@ -11,7 +11,7 @@ export declare class NgSearchboxComponent implements OnInit, OnChanges, AfterVie
     element: ElementRef;
     private memory;
     private changeDetectorRef;
-    private utils;
+    utils: UtilsService;
     private window;
     ngSearchboxAddedFiltersWrapper: NgSearchboxAddedFiltersWrapper;
     searchParams: Search.Parameters;
@@ -19,7 +19,7 @@ export declare class NgSearchboxComponent implements OnInit, OnChanges, AfterVie
     ngSearchBoxConfig: any;
     ngSearchBoxAutoComplete: any;
     ngSearchBoxCacheFilter: boolean;
-    ngSearchBoxEnableFilteringOperators: any;
+    ngSearchBoxEnableFilterOperators: boolean;
     ngSearchBoxFilterSelectors: any;
     ngSearchBoxFilterOperators: any;
     placeholder: string;

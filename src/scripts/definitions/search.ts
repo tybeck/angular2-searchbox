@@ -6,11 +6,15 @@ import {
 
 import {
   NgSearchboxAddedFilter
-} from '../components/ng-searchbox-added-filter';
+} from '../components/ng-searchbox-added-filter.component';
 
 import {
   NgSearchboxComponent
 } from '../components/ng-searchbox.component';
+
+import {
+  NgSearchboxFilterOperators
+} from '../components/ng-searchbox-filter-operators.component';
 
 import {
   FilteringService
@@ -128,6 +132,8 @@ export namespace Search {
 
     filters: ModifiedSearch.ModifiedFilter[];
 
+    operators?: string[];
+
   }
 
   export interface RegisteredEvent {
@@ -150,6 +156,8 @@ export namespace ModifiedSearch {
 
     $$modified?: number;
 
+    $$operator?: string;
+
     notFiltered?: boolean;
 
     active?: boolean;
@@ -164,6 +172,8 @@ export namespace ModifiedSearch {
 
     selector?: Search.Selector;
 
+    operator?: Search.Operator;
+
   }
 
 }
@@ -171,6 +181,8 @@ export namespace ModifiedSearch {
 export interface AddedFilter {
 
   component: ComponentRef<NgSearchboxAddedFilter>;
+
+  operator?: NgSearchboxFilterOperators;
 
   filter: ModifiedSearch.ModifiedFilter;
 
@@ -220,5 +232,9 @@ export const OPERATORS: Search.Operator[] = [
     "selected": true
   }, {
     "name": "OR"
+  }, {
+    "name": "NOR"
+  }, {
+    "name": "NOT"
   }
 ];

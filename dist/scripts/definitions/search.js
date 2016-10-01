@@ -46,5 +46,9 @@ exports.OPERATORS = [
         "selected": true
     }, {
         "name": "OR"
+    }, {
+        "name": "NOR"
+    }, {
+        "name": "NOT"
     }
 ];

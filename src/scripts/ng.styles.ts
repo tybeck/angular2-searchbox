@@ -73,6 +73,34 @@ export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
   display: none;
 }
 `];
+export const NgSearchboxFilterOperatorsStyle: string[] = [`:host {
+  float: left;
+}
+:host div.ng-searchbox-added-filter-operator {
+  background: #FFF;
+  border-radius: 6px;
+  margin-right: 10px;
+  margin-top: 8px;
+}
+:host div.ng-searchbox-added-filter-operator span {
+  padding: 5px 6px 5px 6px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  display: block;
+}
+:host div.ng-searchbox-added-filter-operator span i.fa-arrow-left {
+  margin-right: 5px;
+  color: rgba(0, 0, 0, 0.75);
+}
+:host div.ng-searchbox-added-filter-operator span i.fa-arrow-right {
+  margin-left: 5px;
+  color: rgba(0, 0, 0, 0.75);
+}
+:host div.ng-searchbox-added-filter-operator div.ng-searchbox-filter-operators-wrapper {
+  position: absolute;
+}
+`];
 export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbox-filter-selectors {
   position: absolute;
   z-index: 3;
@@ -89,7 +117,7 @@ export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbo
   overflow-y: scroll;
 }
 `];
-export const GlobalStyle: string[] = [`.ng-clearfix:after {
+export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
   visibility: hidden;
   display: block;
   font-size: 0;
@@ -100,6 +128,47 @@ export const GlobalStyle: string[] = [`.ng-clearfix:after {
 
 * html .ng-clearfix {
   height: 1%;
+}
+
+:host {
+  border: 1px solid rgba(4, 4, 4, 0.3);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  position: relative;
+  border-radius: 4px;
+  display: block;
+  background: #FFF;
+  padding: 4px;
+}
+:host div.ng-searchbox-wrapper {
+  position: relative;
+}
+:host div.ng-searchbox-wrapper input {
+  font-size: 18px;
+  border: none;
+  width: 100%;
+  outline: none;
+  padding: 9px 8px 9px 50px;
+  color: rgba(0, 0, 0, 0.68);
+  font-weight: normal;
+  font-style: italic;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  transform: translate(0, 50%);
+  top: 0;
+  font-size: 18px;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i {
+  margin-right: 5px;
+  cursor: pointer;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-trash, :host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-eraser {
+  color: #4A92D0;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i:last-child {
+  margin-right: 0;
 }
 `];
 export const NgSearchboxFilteringStyle: string[] = [`:host {
@@ -174,8 +243,26 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
 :host ul li.child-filter {
   background: #FFDFDF;
 }
+:host ul li.child-filter:hover {
+  background: #FFD6D6;
+}
+:host ul li i.fa-filter {
+  opacity: 0.45;
+  margin-right: 5px;
+}
+:host ul li i.fa-level-up, :host ul li i.fa-level-down {
+  margin-right: 4px;
+}
+:host ul li:hover span.ng-filter-display-name {
+  font-weight: bold;
+}
+:host ul li span.ng-filtered-from {
+  opacity: 0.6;
+  font-size: 12px;
+  margin-left: 10px;
+}
 `];
-export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
+export const GlobalStyle: string[] = [`.ng-clearfix:after {
   visibility: hidden;
   display: block;
   font-size: 0;
@@ -186,46 +273,5 @@ export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
 
 * html .ng-clearfix {
   height: 1%;
-}
-
-:host {
-  border: 1px solid rgba(4, 4, 4, 0.3);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  position: relative;
-  border-radius: 4px;
-  display: block;
-  background: #FFF;
-  padding: 4px;
-}
-:host div.ng-searchbox-wrapper {
-  position: relative;
-}
-:host div.ng-searchbox-wrapper input {
-  font-size: 18px;
-  border: none;
-  width: 100%;
-  outline: none;
-  padding: 9px 8px 9px 50px;
-  color: rgba(0, 0, 0, 0.68);
-  font-weight: normal;
-  font-style: italic;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons {
-  position: absolute;
-  z-index: 1;
-  right: 10px;
-  transform: translate(0, 50%);
-  top: 0;
-  font-size: 18px;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i {
-  margin-right: 5px;
-  cursor: pointer;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-trash, :host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-eraser {
-  color: #4A92D0;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i:last-child {
-  margin-right: 0;
 }
 `];

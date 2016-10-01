@@ -26,11 +26,15 @@ import {
 
 import {
   NgSearchboxAddedFilter
-} from './components/ng-searchbox-added-filter';
+} from './components/ng-searchbox-added-filter.component';
 
 import {
   NgSearchboxFilterSelectors
-} from './components/ng-searchbox-filter-selectors';
+} from './components/ng-searchbox-filter-selectors.component';
+
+import {
+  NgSearchboxFilterOperators
+} from './components/ng-searchbox-filter-operators.component';
 
 @NgModule({
 
@@ -44,7 +48,8 @@ import {
     NgSearchboxFilteringComponent,
     NgSearchboxAddedFiltersWrapper,
     NgSearchboxAddedFilter,
-    NgSearchboxFilterSelectors
+    NgSearchboxFilterSelectors,
+    NgSearchboxFilterOperators
   ],
 
   'providers': [

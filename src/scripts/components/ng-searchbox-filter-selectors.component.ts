@@ -12,7 +12,7 @@ import {
 
 import {
   NgSearchboxAddedFilter
-} from '../components/ng-searchbox-added-filter';
+} from '../components/ng-searchbox-added-filter.component';
 
 import {
   NgSearchboxFilterSelectorsTemplate
@@ -79,9 +79,13 @@ export class NgSearchboxFilterSelectors implements AfterViewInit {
           .Filtering
           .update();
 
-      this.ngAddedFilter.Event.onFilterSelectorChanged(
-        selector, self.filter
-      );
+        this
+          .ngAddedFilter
+          .Event
+          .onFilterSelectorChanged(
+            selector,
+            self.filter
+          );
 
     }
 

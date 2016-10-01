@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var _ = require('lodash');
 var core_1 = require('@angular/core');
-var ng_searchbox_added_filter_1 = require('../components/ng-searchbox-added-filter');
+var ng_searchbox_added_filter_component_1 = require('../components/ng-searchbox-added-filter.component');
 var ng_templates_1 = require('../ng.templates');
 var ng_styles_1 = require('../ng.styles');
 var search_1 = require('../definitions/search');
@@ -42,7 +42,10 @@ var NgSearchboxFilterSelectors = (function () {
                 .ngAddedFilter
                 .Filtering
                 .update();
-            this.ngAddedFilter.Event.onFilterSelectorChanged(selector, self.filter);
+            this
+                .ngAddedFilter
+                .Event
+                .onFilterSelectorChanged(selector, self.filter);
         }
         this
             .ngAddedFilter
@@ -100,8 +103,8 @@ var NgSearchboxFilterSelectors = (function () {
             'template': ng_templates_1.NgSearchboxFilterSelectorsTemplate,
             'styles': ng_styles_1.NgSearchboxFilterSelectorsStyle
         }),
-        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_1.NgSearchboxAddedFilter; }))), 
-        __metadata('design:paramtypes', [ng_searchbox_added_filter_1.NgSearchboxAddedFilter])
+        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter; }))), 
+        __metadata('design:paramtypes', [ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter])
     ], NgSearchboxFilterSelectors);
     return NgSearchboxFilterSelectors;
 }());

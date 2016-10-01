@@ -70,3 +70,21 @@
 :host ul li.child-filter {
   background: #FFDFDF;
 }
+:host ul li.child-filter:hover {
+  background: #FFD6D6;
+}
+:host ul li i.fa-filter {
+  opacity: 0.45;
+  margin-right: 5px;
+}
+:host ul li i.fa-level-up, :host ul li i.fa-level-down {
+  margin-right: 4px;
+}
+:host ul li:hover span.ng-filter-display-name {
+  font-weight: bold;
+}
+:host ul li span.ng-filtered-from {
+  opacity: 0.6;
+  font-size: 12px;
+  margin-left: 10px;
+}

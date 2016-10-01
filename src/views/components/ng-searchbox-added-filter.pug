@@ -1,6 +1,12 @@
 div.ng-searchbox-added-filter(
   #ngSearchboxAddedFilter=""
 )
+  template(
+    [ngIf]="searchbox && searchbox.ngSearchBoxEnableFilterOperators"
+  )
+    ng-searchbox-filter-operators(
+      [filter]="filter"
+    )
   div.ng-searchbox-added-filter-contents(
     (click)="openFilter();"
   )

@@ -10,12 +10,20 @@ import {
 } from '@angular/core';
 
 import {
+  NgSearchboxComponent
+} from '../components/ng-searchbox.component';
+
+import {
   NgSearchboxAddedFiltersWrapper
 } from '../components/ng-searchbox-added-filters-wrapper.component';
 
 import {
   NgSearchboxAddedFilter
-} from '../components/ng-searchbox-added-filter';
+} from '../components/ng-searchbox-added-filter.component';
+
+import {
+  NgSearchboxFilterOperators
+} from '../components/ng-searchbox-filter-operators.component';
 
 import {
   EventHandling
@@ -42,19 +50,37 @@ export class FilteringService {
 
   public addedFilters: AddedFilter[] = [];
 
+  public addedOperators: string[] = [];
+
   public hasFilters: boolean = false;
 
   public event: EventEmitter<ModifiedSearch.ModifiedFilter[]> = null;
 
   public params: ModifiedSearch.ModifiedFilter[] = null;
 
+  public ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper = null;
+
+  public Event: EventHandling = null;
+
+  public utils: UtilsService = null;
+
   constructor (
-    private eventSvc: EventHandling,
-    private ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper,
-    private utils: UtilsService
+    public searchbox: NgSearchboxComponent
   ) {
 
     this.event = new EventEmitter<ModifiedSearch.ModifiedFilter[]>();
+
+    this.ngSearchboxAddedFilters = this
+      .searchbox
+      .ngSearchboxAddedFiltersWrapper;
+
+    this.Event = this
+      .searchbox
+      .Event;
+
+    this.utils = this
+      .searchbox
+      .utils;
 
     return this;
     
@@ -63,6 +89,122 @@ export class FilteringService {
   public getPublisher (): EventEmitter<ModifiedSearch.ModifiedFilter[]> {
 
     return this.event;
+
+  }
+
+  public getFilterCount (): number {
+
+    return this
+      .addedFilters
+      .length;
+
+  }
+
+  public addOperatorToFilter (
+    operator: Search.Operator,
+    filter: ModifiedSearch.ModifiedFilter,
+    update: boolean = false
+  ) {
+
+    let self: FilteringService = <FilteringService>this;
+
+    if (filter) {
+
+      let index: number = null;
+
+      _.each(self.addedFilters, (addedFilter: AddedFilter, addedIndex: number): void => {
+
+        if (addedFilter.filter.uuid === filter.uuid) {
+
+          index = addedIndex;
+
+        }
+
+      });
+
+      if (index !== null) {
+
+        let filterIndex: number = (index - 1);
+
+        if (!self.addedOperators[filterIndex]) {
+
+           self
+             .addedOperators
+             .push(
+               operator.name
+             );
+
+        } else {
+
+          self
+            .addedOperators[
+              filterIndex
+            ] = operator.name;
+
+        }
+
+      }
+
+    } else {
+
+      self
+        .addedOperators
+        .push(
+          operator.name
+        );
+
+    }
+
+    if (update) {
+
+      this
+        .update();
+
+    }
+
+    console.log(self.addedOperators);
+
+  }
+
+  public hasOperatorAlready (filter: ModifiedSearch.ModifiedFilter): boolean {
+
+    let operators: string[] = this.getOperators(),
+
+      filters: AddedFilter[] = this.getFilters(),
+
+      hasOperator: boolean = false;
+
+    _.each(operators, (o: string, oIndex: number): void => {
+
+      _.each(filters, (f: AddedFilter, fIndex: number): void => {
+
+        if (f.filter.uuid === filter.uuid) {
+
+          if ((fIndex - 1) === oIndex) {
+
+            hasOperator = true;
+
+          }
+
+        }
+
+      })
+
+    });
+
+    return hasOperator;
+
+  }
+
+  public getOperators (): string[] {
+
+    return this.addedOperators;
+
+  }
+
+  public getFilters (): AddedFilter[] {
+
+    return this.addedFilters;
 
   }
 
@@ -92,7 +234,7 @@ export class FilteringService {
       .instance
       .set(
         this,
-        this.eventSvc,
+        this.searchbox,
         modifiedFilter
       );
 
@@ -139,11 +281,87 @@ export class FilteringService {
 
   }
 
-  public remove (filter: AddedFilter, options?: Search.RemoveOptions): void {
-
-    let self: FilteringService = <FilteringService>this;
+  public setOperator (filter: ModifiedSearch.ModifiedFilter, op: NgSearchboxFilterOperators): void {
 
     this
+      .addedFilters
+      .slice()
+      .reverse()
+      .forEach((
+        addedFilter: AddedFilter
+      ): void => {
+
+        if (addedFilter.filter.uuid === filter.uuid) {
+
+          addedFilter.operator = op;
+
+        }
+
+      });
+
+  }
+
+  public getOperatorByFilterIndex (filter: ModifiedSearch.ModifiedFilter): string {
+
+    let self: FilteringService = <FilteringService>this,
+
+      index: number = null,
+
+      oIndex: number = 0,
+
+      op = null;
+
+    _.each(self.addedFilters, (
+      addedFilter: AddedFilter,
+      addedIndex: number): void => {
+
+      if (addedFilter.filter.uuid === filter.uuid) {
+
+        index = addedIndex;
+
+      }
+
+    });
+
+    oIndex = (index - 1);
+
+    if (Math.sign(oIndex) !== -1) {
+
+      op = self.addedOperators[oIndex];
+
+      if (typeof op === 'undefined') {
+
+        op = null;
+
+      }
+
+    }
+
+    return op;
+
+  }
+
+  public remove (filter: AddedFilter, options?: Search.RemoveOptions): void {
+
+    let self: FilteringService = <FilteringService>this,
+
+      operators: Search.Operator[] = self.getOperators(),
+
+      fIndex: number = null;
+
+    self
+      .addedFilters
+      .forEach((sAddedFilter: AddedFilter, sAddedIndex: number): void => {
+
+        if(sAddedFilter.filter.uuid === filter.filter.uuid) {
+
+          fIndex = sAddedIndex;
+
+        }
+
+      });
+
+    self
       .addedFilters
       .slice()
       .reverse()
@@ -154,6 +372,34 @@ export class FilteringService {
       ): void => {
 
         if (addedFilter.component === filter.component) {
+
+          if (operators && operators.length) {
+
+            let oIndex: number = (fIndex - 1);
+
+            if (Math.sign(oIndex) === -1) {
+
+              let ffIndex: number = (fIndex + 1),
+
+                nextFilter: AddedFilter = self.addedFilters[ffIndex];
+
+              if (nextFilter && nextFilter.operator) {
+
+                nextFilter
+                  .operator
+                  .hasOperator = false;
+
+              }
+
+              oIndex = 0;
+
+            }
+
+            self
+              .addedOperators
+              .splice(oIndex, 1);
+
+          }
 
           self
             .addedFilters
@@ -166,6 +412,8 @@ export class FilteringService {
         }
 
       });
+
+    console.log(self.addedOperators);
 
     if (this.addedFilters &&
 
@@ -220,6 +468,8 @@ export class FilteringService {
 
   public buildParameter (filter: ModifiedSearch.ModifiedFilter): ModifiedSearch.ModifiedFilter {
 
+    let operator: string = this.getOperatorByFilterIndex(filter) || null;
+
     let _param: ModifiedSearch.ModifiedFilter = {
 
       'name': filter.name,
@@ -232,7 +482,9 @@ export class FilteringService {
 
       '$$modified': filter.$$timestamp || null,
 
-      '$$timestamp': filter.$$timestamp || null
+      '$$timestamp': filter.$$timestamp || null,
+
+      '$$operator': operator
 
     };
 
@@ -257,8 +509,7 @@ export class FilteringService {
       .forEach((addedFilter: AddedFilter): void => {
 
         if (filter && addedFilter
-          .filter
-          .uuid === filter.uuid) {
+          .filter.uuid === filter.uuid) {
 
             addedFilter.filter = filter;
 

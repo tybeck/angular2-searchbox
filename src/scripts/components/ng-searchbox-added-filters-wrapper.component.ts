@@ -25,7 +25,7 @@ import {
 
 import {
   NgSearchboxAddedFilter
-} from './ng-searchbox-added-filter';
+} from './ng-searchbox-added-filter.component';
 
 import {
   Search

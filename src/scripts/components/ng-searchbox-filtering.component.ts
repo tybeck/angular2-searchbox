@@ -65,6 +65,8 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   public searchbox: NgSearchboxComponent = null;
 
+  private proxiedFunction: EventListenerOrEventListenerObject;
+
   constructor (
     private changeDetectionRef: ChangeDetectorRef,
     private utils: UtilsService,

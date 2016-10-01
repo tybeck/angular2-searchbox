@@ -1,0 +1,24 @@
+div(
+  class="ng-searchbox-added-filter-operator",
+  [hidden]="!hasOperator"
+)
+  span(
+    (click)="toggleOperators();"
+  )
+    i(class="fa fa-arrow-left")
+    template(
+      [ngIf]="filter && filter.operator"
+    )
+      i([innerText]="filter.operator.name")
+    i(class="fa fa-arrow-right")
+  div(
+    class="ng-searchbox-filter-operators-wrapper",
+    [hidden]="!showOperators"
+  )
+    ul
+      li(
+        *ngFor="let operator of operators",
+        [ngClass]="{ 'active': operator.selected }",
+        (click)="takeOperator(operator);"
+      )
+        span([innerText]="operator.name")

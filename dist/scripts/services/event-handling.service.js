@@ -85,6 +85,14 @@ var EventHandling = (function () {
         this.fire('onFilterSelectorChanged', opts);
         return this;
     };
+    EventHandling.prototype.onOperatorChanged = function (operator, filter) {
+        var opts = {
+            'name': operator ? operator.name : '',
+            'filter': filter
+        };
+        this.fire('onOperatorChanged', opts);
+        return this;
+    };
     EventHandling = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [api_service_1.API])

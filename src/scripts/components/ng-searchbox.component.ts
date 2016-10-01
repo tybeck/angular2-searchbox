@@ -85,7 +85,7 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input('ngSearchBoxCacheFilter') public ngSearchBoxCacheFilter: boolean = false;
 
-  @Input('ngSearchBoxEnableFilteringOperators') public ngSearchBoxEnableFilteringOperators: any = null;
+  @Input('ngSearchBoxEnableFilterOperators') public ngSearchBoxEnableFilterOperators: boolean = false;
 
   @Input('ngSearchBoxFilterSelectors') public ngSearchBoxFilterSelectors: any = null;
 
@@ -127,7 +127,7 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
     public element: ElementRef,
     private memory: MemoryService,
     private changeDetectorRef: ChangeDetectorRef,
-    private utils: UtilsService,
+    public utils: UtilsService,
     private window: Window
   ) {
 
@@ -143,6 +143,14 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
       .utils
       .uuid();
 
+    if (this.ngSearchBoxEnableFilterOperators) {
+
+      this
+        .defaultParams
+        .operators = [];
+
+    }
+
     this
       .configure();
 
@@ -150,26 +158,21 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngAfterViewInit () {
 
-    let self: NgSearchboxComponent = <NgSearchboxComponent>this,
-
-      addedFiltersWrapper: NgSearchboxAddedFiltersWrapper = this
-        .ngSearchboxAddedFiltersWrapper;
+    let self: NgSearchboxComponent = <NgSearchboxComponent>this;
 
     this.Api = new API();
 
-    this.Event = new EventHandling(this.Api);
+    this.Event = new EventHandling(self.Api);
 
     this.Filtering = new FilteringService(
-      this.Event,
-      addedFiltersWrapper,
-      this.utils
+      self
     );
 
     this.Placeholding = new PlaceholdersService(
-      this
+      self
     );
 
-    this
+    self
       .Filtering
       .getPublisher()
       .subscribe((filters: ModifiedSearch.ModifiedFilter[]): void => {
@@ -214,11 +217,11 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
     let searchBoxInformationExchange: Search.SearchBoxInformationExchange = {
 
-      'component': this
+      'component': self
 
     };
 
-    this
+    self
       .emit(
 
         Search.InformationChange,
@@ -227,10 +230,10 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
 
       );
 
-    this
+    self
       .register();
 
-    this
+    self
       .changeDetectorRef
       .detectChanges();
 

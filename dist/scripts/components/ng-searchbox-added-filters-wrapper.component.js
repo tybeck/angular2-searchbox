@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ng_templates_1 = require('../ng.templates');
 var ng_styles_1 = require('../ng.styles');
-var ng_searchbox_added_filter_1 = require('./ng-searchbox-added-filter');
+var ng_searchbox_added_filter_component_1 = require('./ng-searchbox-added-filter.component');
 var search_1 = require('../definitions/search');
 var NgSearchboxAddedFiltersWrapper = (function () {
     function NgSearchboxAddedFiltersWrapper(componentFactoryResolver, changeDetectionRef) {
@@ -60,7 +60,7 @@ var NgSearchboxAddedFiltersWrapper = (function () {
             'selector': 'ng-searchbox-added-filters-wrapper',
             'template': ng_templates_1.NgSearchboxAddedFiltersWrapperTemplate,
             'entryComponents': [
-                ng_searchbox_added_filter_1.NgSearchboxAddedFilter
+                ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter
             ],
             'styles': ng_styles_1.NgSearchboxAddedFiltersWrapperStyle
         }), 

@@ -14,4 +14,5 @@ export declare class EventHandling {
     onGarbage(): EventHandling;
     onFilterChanged(filter: ModifiedSearch.ModifiedFilter): EventHandling;
     onFilterSelectorChanged(selector: Search.Selector, filter: ModifiedSearch.ModifiedFilter): EventHandling;
+    onOperatorChanged(operator: Search.Operator, filter: ModifiedSearch.ModifiedFilter): EventHandling;
 }

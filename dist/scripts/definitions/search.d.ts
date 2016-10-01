@@ -1,6 +1,7 @@
 import { ComponentRef } from '@angular/core';
-import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter';
+import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter.component';
 import { NgSearchboxComponent } from '../components/ng-searchbox.component';
+import { NgSearchboxFilterOperators } from '../components/ng-searchbox-filter-operators.component';
 export declare namespace Search {
     const InformationChange: string;
     interface BindingEventChange {
@@ -57,6 +58,7 @@ export declare namespace Search {
     interface Parameters {
         query: string;
         filters: ModifiedSearch.ModifiedFilter[];
+        operators?: string[];
     }
     interface RegisteredEvent {
         type: string;
@@ -68,6 +70,7 @@ export declare namespace ModifiedSearch {
         $$lastValue?: string;
         $$timestamp?: number;
         $$modified?: number;
+        $$operator?: string;
         notFiltered?: boolean;
         active?: boolean;
         value?: string;
@@ -75,10 +78,12 @@ export declare namespace ModifiedSearch {
         uuid?: string;
         condition?: string;
         selector?: Search.Selector;
+        operator?: Search.Operator;
     }
 }
 export interface AddedFilter {
     component: ComponentRef<NgSearchboxAddedFilter>;
+    operator?: NgSearchboxFilterOperators;
     filter: ModifiedSearch.ModifiedFilter;
 }
 export declare const SELECTORS: Search.Selector[];

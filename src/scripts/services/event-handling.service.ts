@@ -158,4 +158,20 @@ export class EventHandling {
 
   }
 
+  public onOperatorChanged (operator: Search.Operator, filter: ModifiedSearch.ModifiedFilter): EventHandling {
+
+    var opts = {
+
+      'name': operator ? operator.name : '',
+
+      'filter': filter
+
+    };
+
+    this.fire('onOperatorChanged', opts);
+
+    return this;
+
+  }
+
 }

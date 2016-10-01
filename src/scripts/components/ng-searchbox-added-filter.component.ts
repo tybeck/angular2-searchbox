@@ -19,6 +19,10 @@ import {
 } from '../services/event-handling.service';
 
 import {
+  NgSearchboxComponent
+} from '../components/ng-searchbox.component';
+
+import {
   NgSearchboxAddedFilterTemplate
 } from '../ng.templates';
 
@@ -54,6 +58,8 @@ export class NgSearchboxAddedFilter {
 
   public filter: ModifiedSearch.ModifiedFilter = null;
 
+  public searchbox: NgSearchboxComponent = null;
+
   public uuid: string = null;
 
   public v: string = '';
@@ -77,15 +83,18 @@ export class NgSearchboxAddedFilter {
 
   public set (
     filteringSvc: FilteringService,
-    eventSvc: EventHandling,
+    searchbox: NgSearchboxComponent,
     filter: ModifiedSearch.ModifiedFilter
   ): NgSearchboxAddedFilter {
 
     this.Filtering = filteringSvc;
 
-    this.Event = eventSvc;
+    this.Event = searchbox
+      .Event;
 
     this.filter = filter;
+
+    this.searchbox = searchbox;
 
     this
       .toggleActivation();

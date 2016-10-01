@@ -14,8 +14,9 @@ var forms_1 = require('@angular/forms');
 var ng_searchbox_component_1 = require('./components/ng-searchbox.component');
 var ng_searchbox_filtering_component_1 = require('./components/ng-searchbox-filtering.component');
 var ng_searchbox_added_filters_wrapper_component_1 = require('./components/ng-searchbox-added-filters-wrapper.component');
-var ng_searchbox_added_filter_1 = require('./components/ng-searchbox-added-filter');
-var ng_searchbox_filter_selectors_1 = require('./components/ng-searchbox-filter-selectors');
+var ng_searchbox_added_filter_component_1 = require('./components/ng-searchbox-added-filter.component');
+var ng_searchbox_filter_selectors_component_1 = require('./components/ng-searchbox-filter-selectors.component');
+var ng_searchbox_filter_operators_component_1 = require('./components/ng-searchbox-filter-operators.component');
 var NgSearchboxModule = (function () {
     function NgSearchboxModule() {
     }
@@ -29,8 +30,9 @@ var NgSearchboxModule = (function () {
                 ng_searchbox_component_1.NgSearchboxComponent,
                 ng_searchbox_filtering_component_1.NgSearchboxFilteringComponent,
                 ng_searchbox_added_filters_wrapper_component_1.NgSearchboxAddedFiltersWrapper,
-                ng_searchbox_added_filter_1.NgSearchboxAddedFilter,
-                ng_searchbox_filter_selectors_1.NgSearchboxFilterSelectors
+                ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter,
+                ng_searchbox_filter_selectors_component_1.NgSearchboxFilterSelectors,
+                ng_searchbox_filter_operators_component_1.NgSearchboxFilterOperators
             ],
             'providers': [
                 {

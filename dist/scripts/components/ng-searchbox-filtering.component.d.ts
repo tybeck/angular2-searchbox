@@ -13,6 +13,7 @@ export declare class NgSearchboxFilteringComponent implements AfterViewInit {
     availableFilters: Search.AvailableFilter[];
     active: boolean;
     searchbox: NgSearchboxComponent;
+    private proxiedFunction;
     constructor(changeDetectionRef: ChangeDetectorRef, utils: UtilsService, zone: NgZone);
     handleResize(): void;
     toggleFilters(active?: boolean): void;

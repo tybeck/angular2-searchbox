@@ -19,6 +19,24 @@ div.ng-filtering.ng-clearfix
         [innerText]="filter.displayName",
         class="ng-filter-display-name"
       )
-      span(
-        class="ng-filtered-from"
+      template(
+        [ngIf]="filter.root"
       )
+        span(
+          class="ng-filtered-from"
+        )
+          i(class="fa fa-level-up")
+          | (Derived from Root
+          i(class="fa fa-angle-double-right")
+          span([innerText]="' ' + filter.root")
+          | )
+      template(
+      [ngIf]="filter.child"
+      )
+        span(
+          class="ng-filtered-from"
+        )
+          i(class="fa fa-level-down")
+          | (Derived from
+          span([innerText]="' ' + filter.child")
+          | )
