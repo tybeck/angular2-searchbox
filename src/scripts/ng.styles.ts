@@ -58,21 +58,6 @@ export const NgSearchboxAddedFilterStyle: string[] = [`:host > div.ng-searchbox-
   margin-right: 5px;
 }
 `];
-export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
-  padding: 0 0 8px 7px;
-  background: #E1F0FD;
-  border-radius: 6px;
-  margin-top: 7px;
-  margin-bottom: 4px;
-  display: none;
-}
-:host.active {
-  display: block;
-}
-:host div.ng-searchbox-added-filters {
-  display: none;
-}
-`];
 export const NgSearchboxFilterOperatorsStyle: string[] = [`:host {
   float: left;
 }
@@ -115,6 +100,21 @@ export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbo
   border-bottom: 1px solid #A9A9A9;
   max-height: 130px;
   overflow-y: scroll;
+}
+`];
+export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
+  padding: 0 0 8px 7px;
+  background: #E1F0FD;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+  display: none;
+}
+:host.active {
+  display: block;
+}
+:host div.ng-searchbox-added-filters {
+  display: none;
 }
 `];
 export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
@@ -171,6 +171,19 @@ export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
   margin-right: 0;
 }
 `];
+export const GlobalStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
+}
+`];
 export const NgSearchboxFilteringStyle: string[] = [`:host {
   display: block;
 }
@@ -209,7 +222,7 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
 }
 :host ul {
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -260,18 +273,5 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
   opacity: 0.6;
   font-size: 12px;
   margin-left: 10px;
-}
-`];
-export const GlobalStyle: string[] = [`.ng-clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-* html .ng-clearfix {
-  height: 1%;
 }
 `];
