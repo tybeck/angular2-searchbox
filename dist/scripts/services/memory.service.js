@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var MemoryService = (function () {
     function MemoryService(window) {
@@ -61,7 +64,8 @@ var MemoryService = (function () {
             .setItem(this.hash, JSON.stringify(obj));
     };
     MemoryService = __decorate([
-        core_1.Injectable(), 
+        core_1.Injectable(),
+        __param(0, core_1.Inject(Window)), 
         __metadata('design:paramtypes', [Window])
     ], MemoryService);
     return MemoryService;

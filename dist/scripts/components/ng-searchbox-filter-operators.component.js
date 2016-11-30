@@ -146,7 +146,8 @@ var NgSearchboxFilterOperators = (function () {
             'template': ng_templates_1.NgSearchboxFilterOperatorsTemplate,
             'styles': ng_styles_1.NgSearchboxFilterOperatorsStyle
         }),
-        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter; }))), 
+        __param(0, core_1.Inject(core_1.forwardRef(function () { return ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter; }))),
+        __param(1, core_1.Inject(Window)), 
         __metadata('design:paramtypes', [ng_searchbox_added_filter_component_1.NgSearchboxAddedFilter, Window, core_1.ElementRef])
     ], NgSearchboxFilterOperators);
     return NgSearchboxFilterOperators;

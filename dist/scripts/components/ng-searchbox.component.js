@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var ng_templates_1 = require('../ng.templates');
 var ng_styles_1 = require('../ng.styles');
@@ -270,7 +273,8 @@ var NgSearchboxComponent = (function () {
                 memory_service_1.MemoryService,
                 utils_service_1.UtilsService
             ]
-        }), 
+        }),
+        __param(4, core_1.Inject(Window)), 
         __metadata('design:paramtypes', [core_1.ElementRef, memory_service_1.MemoryService, core_1.ChangeDetectorRef, utils_service_1.UtilsService, Window])
     ], NgSearchboxComponent);
     return NgSearchboxComponent;

@@ -61,7 +61,7 @@ export class NgSearchboxFilterOperators implements AfterViewInit {
 
   constructor (
     @Inject(forwardRef(() => NgSearchboxAddedFilter)) private ngAddedFilter: NgSearchboxAddedFilter,
-    private window: Window,
+    @Inject(Window) private window: Window,
     private element: ElementRef
   ) {
 

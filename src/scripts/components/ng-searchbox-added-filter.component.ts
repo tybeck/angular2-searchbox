@@ -3,7 +3,8 @@
 import {
   Component,
   ViewChild,
-  ElementRef
+  ElementRef,
+  Inject
 } from '@angular/core';
 
 import {
@@ -70,7 +71,7 @@ export class NgSearchboxAddedFilter {
 
   constructor (
     private utils: UtilsService,
-    private window: Window
+    @Inject(Window) private window: Window
   ) {
 
     this.uuid = this

@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var utils_service_1 = require('../services/utils.service');
 var ng_templates_1 = require('../ng.templates');
@@ -191,7 +194,8 @@ var NgSearchboxAddedFilter = (function () {
             'providers': [
                 utils_service_1.UtilsService
             ]
-        }), 
+        }),
+        __param(1, core_1.Inject(Window)), 
         __metadata('design:paramtypes', [utils_service_1.UtilsService, Window])
     ], NgSearchboxAddedFilter);
     return NgSearchboxAddedFilter;

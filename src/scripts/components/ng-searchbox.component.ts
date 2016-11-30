@@ -10,7 +10,8 @@ import {
   EventEmitter,
   ViewChild,
   ChangeDetectorRef,
-  ElementRef
+  ElementRef,
+  Inject
 } from '@angular/core';
 
 import {
@@ -128,7 +129,7 @@ export class NgSearchboxComponent implements OnInit, OnChanges, AfterViewInit {
     private memory: MemoryService,
     private changeDetectorRef: ChangeDetectorRef,
     public utils: UtilsService,
-    private window: Window
+    @Inject(Window) private window: Window
   ) {
 
     console.log(this.memory);

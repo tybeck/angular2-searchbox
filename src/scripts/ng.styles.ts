@@ -58,6 +58,21 @@ export const NgSearchboxAddedFilterStyle: string[] = [`:host > div.ng-searchbox-
   margin-right: 5px;
 }
 `];
+export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
+  padding: 0 0 8px 7px;
+  background: #E1F0FD;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 4px;
+  display: none;
+}
+:host.active {
+  display: block;
+}
+:host div.ng-searchbox-added-filters {
+  display: none;
+}
+`];
 export const NgSearchboxFilterOperatorsStyle: string[] = [`:host {
   float: left;
 }
@@ -100,88 +115,6 @@ export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbo
   border-bottom: 1px solid #A9A9A9;
   max-height: 130px;
   overflow-y: scroll;
-}
-`];
-export const NgSearchboxAddedFiltersWrapperStyle: string[] = [`:host {
-  padding: 0 0 8px 7px;
-  background: #E1F0FD;
-  border-radius: 6px;
-  margin-top: 7px;
-  margin-bottom: 4px;
-  display: none;
-}
-:host.active {
-  display: block;
-}
-:host div.ng-searchbox-added-filters {
-  display: none;
-}
-`];
-export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-* html .ng-clearfix {
-  height: 1%;
-}
-
-:host {
-  border: 1px solid rgba(4, 4, 4, 0.3);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  position: relative;
-  border-radius: 4px;
-  display: block;
-  background: #FFF;
-  padding: 4px;
-}
-:host div.ng-searchbox-wrapper {
-  position: relative;
-}
-:host div.ng-searchbox-wrapper input {
-  font-size: 18px;
-  border: none;
-  width: 100%;
-  outline: none;
-  padding: 9px 8px 9px 50px;
-  color: rgba(0, 0, 0, 0.68);
-  font-weight: normal;
-  font-style: italic;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons {
-  position: absolute;
-  z-index: 1;
-  right: 10px;
-  transform: translate(0, 50%);
-  top: 0;
-  font-size: 18px;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i {
-  margin-right: 5px;
-  cursor: pointer;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-trash, :host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-eraser {
-  color: #4A92D0;
-}
-:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i:last-child {
-  margin-right: 0;
-}
-`];
-export const GlobalStyle: string[] = [`.ng-clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-* html .ng-clearfix {
-  height: 1%;
 }
 `];
 export const NgSearchboxFilteringStyle: string[] = [`:host {
@@ -273,5 +206,72 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
   opacity: 0.6;
   font-size: 12px;
   margin-left: 10px;
+}
+`];
+export const GlobalStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
+}
+`];
+export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
+}
+
+:host {
+  border: 1px solid rgba(4, 4, 4, 0.3);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  position: relative;
+  border-radius: 4px;
+  display: block;
+  background: #FFF;
+  padding: 4px;
+}
+:host div.ng-searchbox-wrapper {
+  position: relative;
+}
+:host div.ng-searchbox-wrapper input {
+  font-size: 18px;
+  border: none;
+  width: 100%;
+  outline: none;
+  padding: 9px 8px 9px 50px;
+  color: rgba(0, 0, 0, 0.68);
+  font-weight: normal;
+  font-style: italic;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  transform: translate(0, 50%);
+  top: 0;
+  font-size: 18px;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i {
+  margin-right: 5px;
+  cursor: pointer;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-trash, :host div.ng-searchbox-wrapper div.ng-searchbox-buttons i.fa-eraser {
+  color: #4A92D0;
+}
+:host div.ng-searchbox-wrapper div.ng-searchbox-buttons i:last-child {
+  margin-right: 0;
 }
 `];
