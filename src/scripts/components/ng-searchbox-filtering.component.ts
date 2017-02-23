@@ -174,8 +174,6 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
                   .ngSearchBoxFiltering
               );
 
-              console.log(self.availableFilters, 'okokokok');
-
               self.Filtering = self
                 .searchbox
                 .Filtering;
@@ -196,7 +194,11 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   public excludeFromFilters (filters: Search.AvailableFilter[]):  Search.AvailableFilter[] {
 
-    let excludedFilters:  Search.AvailableFilter[] = filters;
+    let excludedFilters: Search.AvailableFilter[] = JSON.parse(
+      JSON.stringify(
+        filters
+      )
+    );
 
     excludedFilters
       .slice()

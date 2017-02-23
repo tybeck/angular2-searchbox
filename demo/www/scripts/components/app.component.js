@@ -81,6 +81,7 @@ var AppComponent = (function () {
         };
     }
     AppComponent.prototype.register = function (api) {
+        var _this = this;
         console.log(api);
         api
             .on('onQueryAdded', function () {
@@ -118,6 +119,10 @@ var AppComponent = (function () {
             }
             console.log('change...', args);
         });
+        console.log(this.tybFilters, this.tybFilters.length);
+        setTimeout(function () {
+            console.log(_this.tybFilters, _this.tybFilters.length);
+        }, 1000);
     };
     AppComponent = __decorate([
         core_1.Component({

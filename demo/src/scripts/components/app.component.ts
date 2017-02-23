@@ -137,6 +137,14 @@ export class AppComponent {
 
       });
 
+    console.log(this.tybFilters, this.tybFilters.length);
+
+    setTimeout(() => {
+
+      console.log(this.tybFilters, this.tybFilters.length);
+
+    }, 1000);
+
   }
 
 }

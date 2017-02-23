@@ -81,7 +81,6 @@ var NgSearchboxFilteringComponent = (function () {
                         self.availableFilters = _this.excludeFromFilters(self
                             .searchbox
                             .ngSearchBoxFiltering);
-                        console.log(self.availableFilters, 'okokokok');
                         self.Filtering = self
                             .searchbox
                             .Filtering;
@@ -94,7 +93,7 @@ var NgSearchboxFilteringComponent = (function () {
         });
     };
     NgSearchboxFilteringComponent.prototype.excludeFromFilters = function (filters) {
-        var excludedFilters = filters;
+        var excludedFilters = JSON.parse(JSON.stringify(filters));
         excludedFilters
             .slice()
             .reverse()
