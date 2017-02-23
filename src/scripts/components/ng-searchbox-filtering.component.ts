@@ -150,7 +150,7 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
   }
 
-  ngAfterViewInit () {
+  public ngAfterViewInit (): void {
 
     let self: NgSearchboxFilteringComponent = <NgSearchboxFilteringComponent>this;
 
@@ -168,9 +168,13 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
 
             if (self.searchbox) {
 
-              self.availableFilters = self
-                .searchbox
-                .ngSearchBoxFiltering;
+              self.availableFilters = this.excludeFromFilters(
+                self
+                  .searchbox
+                  .ngSearchBoxFiltering
+              );
+
+              console.log(self.availableFilters, 'okokokok');
 
               self.Filtering = self
                 .searchbox
@@ -187,6 +191,35 @@ export class NgSearchboxFilteringComponent implements AfterViewInit {
           .detectChanges();
 
       });
+
+  }
+
+  public excludeFromFilters (filters: Search.AvailableFilter[]):  Search.AvailableFilter[] {
+
+    let excludedFilters:  Search.AvailableFilter[] = filters;
+
+    excludedFilters
+      .slice()
+      .reverse()
+      .forEach((
+        filter: Search.AvailableFilter,
+        filterIndex: number,
+        filterObject: any
+      ): void => {
+
+        if(filter.excluded) {
+
+          excludedFilters
+            .splice(
+              filterObject.length - 1 - filterIndex,
+              1
+            );
+
+        }
+
+      });
+
+    return excludedFilters;
 
   }
 

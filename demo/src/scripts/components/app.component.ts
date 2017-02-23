@@ -30,7 +30,8 @@ export class AppComponent {
       'name': 'cpi',
       'displayName': 'CPI',
       'root': 'Product',
-      'validation': 'length=3'
+      'validation': 'length=3',
+      'excluded': true
     }, {
       'name': 'vendor_desc',
       'displayName': 'Vendor Description',

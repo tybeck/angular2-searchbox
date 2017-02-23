@@ -104,6 +104,7 @@ export const NgSearchboxFilterOperatorsStyle: string[] = [`:host {
 export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbox-filter-selectors {
   position: absolute;
   z-index: 3;
+  margin-top: 4px;
 }
 :host div.ng-searchbox-filter-selectors ul {
   list-style-type: none;
@@ -115,6 +116,15 @@ export const NgSearchboxFilterSelectorsStyle: string[] = [`:host div.ng-searchbo
   border-bottom: 1px solid #A9A9A9;
   max-height: 130px;
   overflow-y: scroll;
+}
+:host div.ng-searchbox-filter-selectors ul li {
+  padding: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+:host div.ng-searchbox-filter-selectors ul li:nth-child(odd) {
+  background: #E1F0FD;
 }
 `];
 export const NgSearchboxFilteringStyle: string[] = [`:host {
@@ -208,19 +218,6 @@ export const NgSearchboxFilteringStyle: string[] = [`:host {
   margin-left: 10px;
 }
 `];
-export const GlobalStyle: string[] = [`.ng-clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-* html .ng-clearfix {
-  height: 1%;
-}
-`];
 export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
   visibility: hidden;
   display: block;
@@ -273,5 +270,18 @@ export const NgSearchboxStyle: string[] = [`.ng-clearfix:after {
 }
 :host div.ng-searchbox-wrapper div.ng-searchbox-buttons i:last-child {
   margin-right: 0;
+}
+`];
+export const GlobalStyle: string[] = [`.ng-clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .ng-clearfix {
+  height: 1%;
 }
 `];

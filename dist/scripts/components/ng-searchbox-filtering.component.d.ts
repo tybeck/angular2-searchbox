@@ -19,6 +19,7 @@ export declare class NgSearchboxFilteringComponent implements AfterViewInit {
     toggleFilters(active?: boolean): void;
     setPosition(): void;
     ngAfterViewInit(): void;
+    excludeFromFilters(filters: Search.AvailableFilter[]): Search.AvailableFilter[];
     addFilterAndClose(filter: ModifiedSearch.ModifiedFilter): void;
     addFilter(event: MouseEvent, name: string): void;
 }

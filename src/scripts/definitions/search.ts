@@ -90,6 +90,8 @@ export namespace Search {
 
     displayName?: string;
 
+    excluded?: boolean;
+
     middleware?: (Function|Function[]);
 
     multi?: boolean;

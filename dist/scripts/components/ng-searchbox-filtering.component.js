@@ -68,6 +68,7 @@ var NgSearchboxFilteringComponent = (function () {
             .width = w + 'px';
     };
     NgSearchboxFilteringComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         var self = this;
         this
             .observer
@@ -77,9 +78,10 @@ var NgSearchboxFilteringComponent = (function () {
                     var data = change.data;
                     self.searchbox = data.component;
                     if (self.searchbox) {
-                        self.availableFilters = self
+                        self.availableFilters = _this.excludeFromFilters(self
                             .searchbox
-                            .ngSearchBoxFiltering;
+                            .ngSearchBoxFiltering);
+                        console.log(self.availableFilters, 'okokokok');
                         self.Filtering = self
                             .searchbox
                             .Filtering;
@@ -90,6 +92,19 @@ var NgSearchboxFilteringComponent = (function () {
                 .changeDetectionRef
                 .detectChanges();
         });
+    };
+    NgSearchboxFilteringComponent.prototype.excludeFromFilters = function (filters) {
+        var excludedFilters = filters;
+        excludedFilters
+            .slice()
+            .reverse()
+            .forEach(function (filter, filterIndex, filterObject) {
+            if (filter.excluded) {
+                excludedFilters
+                    .splice(filterObject.length - 1 - filterIndex, 1);
+            }
+        });
+        return excludedFilters;
     };
     NgSearchboxFilteringComponent.prototype.addFilterAndClose = function (filter) {
         this.toggleFilters(false);

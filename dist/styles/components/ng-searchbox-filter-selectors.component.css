@@ -1,6 +1,7 @@
 :host div.ng-searchbox-filter-selectors {
   position: absolute;
   z-index: 3;
+  margin-top: 4px;
 }
 :host div.ng-searchbox-filter-selectors ul {
   list-style-type: none;
@@ -12,4 +13,13 @@
   border-bottom: 1px solid #A9A9A9;
   max-height: 130px;
   overflow-y: scroll;
+}
+:host div.ng-searchbox-filter-selectors ul li {
+  padding: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+:host div.ng-searchbox-filter-selectors ul li:nth-child(odd) {
+  background: #E1F0FD;
 }

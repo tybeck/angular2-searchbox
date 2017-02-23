@@ -37,6 +37,7 @@ export declare namespace Search {
     interface AvailableFilter {
         name: string;
         displayName?: string;
+        excluded?: boolean;
         middleware?: (Function | Function[]);
         multi?: boolean;
         validation?: string;

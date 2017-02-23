@@ -266,7 +266,7 @@ function buildTs (cb) {
 
     return cb(null);
 
-  }, 750);
+  }, 5000);
 
 }
 
@@ -289,7 +289,7 @@ function buildTsDemo (cb) {
       .pipe(msg.success('Copy to node_modules ... <%= file.relative %>'))
       .pipe(gulp.dest('node_modules/angular2-searchbox/dist/'));
 
-  }, 250);
+  }, 2500);
 
   setTimeout(function () {
 
@@ -306,7 +306,7 @@ function buildTsDemo (cb) {
 
     ]);
 
-  }, 500);
+  }, 5000);
 
   setTimeout(function () {
 
@@ -330,7 +330,7 @@ function buildPug (cb) {
 
     return cb(null);
 
-  }, 750);
+  }, 2000);
 
 }
 
